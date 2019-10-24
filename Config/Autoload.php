@@ -11,6 +11,9 @@ class Autoload {
 
             if(file_exists($classPath)){
 
+                echo $classPath;
+                echo "<br>";
+
                 include_once($classPath);
             }
 

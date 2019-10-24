@@ -11,4 +11,12 @@
 
 <p>Welcome<p>
 
+<ul>
+            <li><a href="<?php echo FRONT_ROOT."Estrenos/Indice"?>">Estrenos</a></li> 
+      </ul>
+
+<?php
+    include("footer.php");
+?>
+
 

@@ -7,7 +7,7 @@
         <li class="active"><a class="drop" href="#">Sing up</a>
           <ul>
             <li><a href="#">Login</a></li>
-            <li><a href="#">Registrarse</a></li> 
+            <li><a href="<?php echo FRONT_ROOT."Estrenos/Indice"?>">Estrenos</a></li> 
       </ul>
     </nav>
   </header>
