@@ -20,12 +20,10 @@
             else
                 $this->controller = ucwords(array_shift($urlArray));
 
-            //empty($urlArray)?$this->controller = "Home": $this->controller = ucwords(array_shift($urlArray));  //probar si funciona
-
             if(empty($urlArray))
                 $this->method = "Index";
             else
-                $this->method = ucwords(array_shift($urlArray));
+                $this->method = array_shift($urlArray);
 
             $methodRequest = $this->getMethodRequest();   
 
@@ -39,9 +37,11 @@
                         array_push($this->parameters,$value);
                     }
 
-                }else $this->parameters = $urlArray;
+                }else 
+                    $this->parameters = $urlArray;
 
-            }elseif($_POST)
+            }
+            elseif($_POST)
                 $this->parameters=$_POST;
             
             if($_FILES){
@@ -76,9 +76,5 @@
 
             return $this->parameters;
         }
-
     }
-
-
-
 ?>
