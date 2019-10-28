@@ -11,14 +11,13 @@ class Autoload {
 
             if(file_exists($classPath)){
 
-                echo $classPath;
-                echo "<br>";
+                //echo $classPath;
+                //echo "<br>";
 
                 include_once($classPath);
             }
 
-          //  file_exists($classPath)? include_once($classPath) : echo "No existe la clase"; *alternativa*
-        });
+       });
     }
 }
 ?>

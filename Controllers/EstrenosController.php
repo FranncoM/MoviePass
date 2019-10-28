@@ -1,4 +1,4 @@
-<?php namespace Contreollers;
+<?php namespace Controllers;
 
     class EstrenosController
     {
