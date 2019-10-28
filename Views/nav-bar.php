@@ -26,7 +26,7 @@
 								<li><a href="">Ni idea que poner</a></li>
 							</ul>
 						</li>
-						<li><a href="">Proximos Estrenos</a></li>
+						<li><a href="<?php echo FRONT_ROOT ."Estrenos/Index"?>">Proximos Estrenos</a></li>
 						<li><a href="">Horarios</a></li>
 						<li><a href="">Comprar</a></li>
 						<li><a href="">Contacto</a></li>

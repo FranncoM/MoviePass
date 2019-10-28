@@ -2,7 +2,7 @@
 
     class EstrenosController
     {
-        public function Indice ($message = ""){
+        public function Index ($message = ""){
 
             require_once(VIEWS_PATH."estrenos.php");
 
