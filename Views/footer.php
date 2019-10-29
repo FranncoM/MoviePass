@@ -8,7 +8,7 @@
 				<img src="" alt="">
 			</div>
 			<a href="#" class="footer-logo">
-				<img src="<?php echo IMG_PATH ."logo.png"?>" alt=""> <!-- cambiar logo-->
+				<img src="<?php echo IMG_PATH ."logo2.png"?>" alt=""> <!-- cambiar logo-->
 			</a>
 			<ul class="main-menu footer-menu">
 				<li><a href="">Inicio</a></li>
