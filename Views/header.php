@@ -29,6 +29,17 @@
 
 </head>
 <body>
+<?php
+
+	include_once ('DAO/connection2.php');
+	include_once ('DAO/DAOUser2.php');
+
+	connection2 :: openConnection();
+	$usuarios = DAOUser2 :: getAllUsers(connection2 :: getConnection());
+	echo count($usuarios);
+	connection2 :: closeConnection();
+
+?>
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>

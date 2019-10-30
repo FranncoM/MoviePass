@@ -1,5 +1,4 @@
-<?php
-    namespace Models;
+<?php namespace Models;
 
     class User
     {
@@ -9,7 +8,20 @@
         private $email;
         private $password;
         private $level;
-        
+        private $purchasedTickets;    // saber que entradas se adquirieron por fechas //
+        private $dateTickets;
+
+        public function __construct($name, $lastName, $userName, $email, $password, $level, $purchasedTickets, $dateTickets){
+
+            setName($name);
+            setLastName($lastName);
+            setUserName($userName);
+            setEmail($email);
+            setPassword($password);
+            setLevel($level);
+            setDateTickets($dateTickets);
+            setPurchasedTickets($purchasedTickets);
+        }
 
         public function setName($name)
         {
@@ -23,19 +35,15 @@
 
         }
 
-
-
         public function setUserName($userName)
         {
             $this->userName = $userName;
         }
 
-
         public function setPassword($password)
         {
             $this->password = $password;
         }
-
 
         public function setEmail($email)
         {
@@ -66,12 +74,10 @@
             return $this->userName;
         }
 
-
         public function getPassword()
         {
             return $this->password;
         }
-
 
         public function getEmail()
         {
@@ -79,13 +85,30 @@
 
         }
 
-
         public function getLevel()
         {
             return $this->level;
 
         }
 
+        public function setPurchasedTickets ($purchasedTickets){
+
+            $this->purchasedTickets = $purchasedTickets;
+        }
         
+        public function getPurchasedTickets (){
+
+            return $this->$purchasedTickets;
+        }
+
+        public function setDateTickets ($dateTickets){
+
+            $this->dateTickets = $dateTickets;
+        }
+
+        public function getDateTickets (){
+
+            return $this->$dateTickets;
+        }
     }
 ?>

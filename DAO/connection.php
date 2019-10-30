@@ -11,8 +11,8 @@ class Connection {
     public function __construct (){
 
         try{
-            $this->pdo new \PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
-            $this->pdo->setAttributte(\PDO::ATTR_ERRMODE, \PDO::ERMODE_EXCEPTION);
+            $this->pdo new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
+            $this->pdo->setAttributte(PDO::ATTR_ERRMODE, PDO::ERMODE_EXCEPTION);
         }catch (Exception $ex){
 
             throw $ex;

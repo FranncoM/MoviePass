@@ -39,7 +39,6 @@
 	<script src="<?php echo SCRIPT_PATH . "jquery.sticky-sidebar.min.js"?>"></script>
 	<script src="<?php echo SCRIPT_PATH . "jquery.magnific-popup.min.js"?>"></script>
 	<script src="<?php echo SCRIPT_PATH . "main.js"?>"></script>
-	
 
 
 
