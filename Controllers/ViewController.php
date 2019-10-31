@@ -8,7 +8,7 @@
     $userController = new C_User;
     $user = $userController->checkSession();
 
-    class ViewsController {
+    class ViewController {
 
         private $userController;
 

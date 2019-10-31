@@ -3,7 +3,7 @@
     use Models\User as User;
     use DAO\DAOUser as Dao;
 
-    use Controllers\ViewsController as View_C;
+    use Controllers\ViewController as C_View;
     
     class UserController
     {
@@ -12,11 +12,12 @@
     
         function __construct()
         {
-            $this->dao = Dao::getInstance();
+           // $this->dao = Dao::getInstance();
+           $this->dao= new Dao;
             $this->viewController = new C_View;
         }
     
-        public function create($name,$lastname,$username,$email,$password,$level,$purchasedTickets,$dateTickets)
+        public function create($name,$lastname,$username,$email,$password,$level,$purchasedTickets,$dateTickets,$type='')
         {
             if(!empty($type)){
                 //crea el objeto user para luego agregarlo a la base de datos
@@ -28,7 +29,7 @@
                 $this->dao->create($user);
     
                 //luego de guardarlo en la base de datos se muestra la vista admin de users
-                $this->viewController->viewUsersAdmin();
+                //$this->viewController->viewUsersAdmin();
             }
             else {
                 //crea el objeto user para luego agregarlo a la base de datos
@@ -64,7 +65,9 @@
         public function read($email)
         {
             //DEVUELVE EL user CON ESE EMAIL EN CASO DE EXSISTIR
-    
+
+            echo "este metodo anda";
+
             $user = $this->dao->read($email);
     
             //INCLUYE LA VISTA DONDE SE MUESTRA EL user
@@ -86,6 +89,7 @@
     
         public function login ($email='', $pass='')
         {
+           
             $user = $this->dao->read($email);
     
             if($user)
@@ -139,5 +143,5 @@
         }
     
 
-
+    }
 ?>

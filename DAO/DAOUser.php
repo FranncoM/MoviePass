@@ -1,14 +1,19 @@
 <?php namespace DAO;
 
     use Models\User as M_Usuario;
-    use DAO\Connection as Connection;
+    use DAO\connection as Connection;
+    use PDOException;
          /**
           *
           */
-         class User 
+         class DAOUser 
          {
               private $connection;
-              function __construct() {}
+
+              function __construct() {
+
+               $this->connection = null;
+              }
               /**
                *
                */
@@ -39,11 +44,20 @@
               
               
               public function read($_email) {
+               
+
                    $sql = "SELECT * FROM users where email = :email";
+
+
                    $parameters['email'] = $_email;
+
                    try {
+
+                         $var=Connection::getHOLA();
                         $this->connection = Connection::getInstance();
+
                         $resultSet = $this->connection->execute($sql, $parameters);
+
                    } catch(Exception $ex) {
                        throw $ex;
                    }

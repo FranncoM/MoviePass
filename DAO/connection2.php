@@ -11,7 +11,7 @@
 
                 try{
 
-                    include_once('DAOConfig.php');
+                    include_once('config.php');
                     self::$connection = new PDO("mysql:host= ". DB_HOST . ";dbname= ". DB_NAME, DB_USER, DB_PASS);
                     self::$connection -> setAtributte(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     self::$connection -> exec("SET CHARACTER UTF-8");
