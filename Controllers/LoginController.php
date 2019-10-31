@@ -1,4 +1,4 @@
-<?php   namespace controllers;
+<?php  namespace Controllers;
 
     class LoginController{
 

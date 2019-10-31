@@ -1,4 +1,4 @@
-<?php namespace DAO 
+<?php namespace DAO ;
 
     class connection2{
     
@@ -17,7 +17,7 @@
                     self::$connection -> exec("SET CHARACTER UTF-8");
                     print "connection ON";
 
-                }catch (Exception ex){
+                }catch (Exception $ex){
 
                     print "ERROR: " . $ex -> getMessage() . "<br>";
                     die();

@@ -2,6 +2,7 @@
 
     class User
     {
+        private $id_user;
         private $name;
         private $lastName;
         private $userName;
@@ -11,8 +12,8 @@
         private $purchasedTickets;    // saber que entradas se adquirieron por fechas //
         private $dateTickets;
 
-        public function __construct($name, $lastName, $userName, $email, $password, $level, $purchasedTickets, $dateTickets){
-
+        public function __construct($id, $name, $lastName, $userName, $email, $password, $level, $purchasedTickets, $dateTickets){
+            setId($id_user);
             setName($name);
             setLastName($lastName);
             setUserName($userName);
@@ -21,6 +22,11 @@
             setLevel($level);
             setDateTickets($dateTickets);
             setPurchasedTickets($purchasedTickets);
+        }
+        
+        public function setId($id_user)
+        {
+            $this->id_user = $id_user;
         }
 
         public function setName($name)
@@ -55,6 +61,11 @@
         {
             $this->level = $level;
 
+        }
+
+        public function getId($id_user)
+        {
+            return $this->id_user;
         }
 
         public function getName()
