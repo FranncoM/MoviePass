@@ -66,7 +66,6 @@
         {
             //DEVUELVE EL user CON ESE EMAIL EN CASO DE EXSISTIR
 
-            echo "este metodo anda";
 
             $user = $this->dao->read($email);
     

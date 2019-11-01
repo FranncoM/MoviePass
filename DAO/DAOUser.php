@@ -14,6 +14,7 @@
 
                $this->connection = null;
               }
+
               /**
                *
                */
@@ -45,24 +46,24 @@
               
               public function read($_email) {
                
-
                    $sql = "SELECT * FROM users where email = :email";
 
 
                    $parameters['email'] = $_email;
 
                    try {
-
-                         $var=Connection::getHOLA();
                         $this->connection = Connection::getInstance();
 
                         $resultSet = $this->connection->execute($sql, $parameters);
-
+                        
                    } catch(Exception $ex) {
                        throw $ex;
                    }
-                   if(!empty($resultSet))
-                        return $this->mapear($resultSet);
+                   if(!empty($resultSet)){
+                        
+                    return $this->mapear($resultSet);
+                   }
+                       
                    else
                         return false;
               }
@@ -111,11 +112,6 @@
                        throw $ex;
                   }
               }
-             
-
-              public function update($value) { //pendiente
-              }
-              
               
               
               public function delete($email) {
@@ -148,9 +144,9 @@
 
                 $resp = array_map(function($p){
 
-                    return new M_Usuario($p['id'], $p['name'], $p['lastname'], $p['username'], $p['email'], $p['password'], $p['level'], $p['purchasedTickets'], $p['dateTickets']);
+                    return new M_Usuario($p['id'], $p['name'], $p['lastname'], $p['username'], $p['email'], $p['password'], $p['level']);
                 }, $value);
-
+                    
                    return count($resp) > 1 ? $resp : $resp['0'];
             }
          }

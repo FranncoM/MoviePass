@@ -14,7 +14,7 @@
                 try{
 
                     $this->pdo = new \PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
-                    $this->pdo->setAttributte(\PDO::ATTR_ERRMODE, \PDO::ERMODE_EXCEPTION);
+                    $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
                 }catch (Exception $ex){
 
@@ -30,19 +30,13 @@
                 return self::$instance;
             }
 
-
-            public static function getHOLA(){
-
-                return "hola";
-            }
-
             public function execute($query, $parameters = array()){
 
                 try{
                     // Creo una sentencia llamando a prepare. Esto devuelve un objeto statement
                     $this->pdoStatament = $this->pdo->prepare($query);
 
-                    var_dump($this->pdoStatament);
+                   // var_dump($this->pdoStatament);
 
                     foreach($parameters as $parameterName => $value){
 
@@ -75,7 +69,7 @@
                 $this->pdoStatament->execute();
                 return $this->pdoStatament->rowCount();
 
-            }catch(Exception $ex){
+            }catch(\PDOException $ex){
 
                 throw $ex;
             }
@@ -83,4 +77,3 @@
         }
     }
 
-?>

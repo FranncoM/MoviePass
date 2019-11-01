@@ -23,7 +23,7 @@
             $this->userController = new C_User;
             $user = $this->userController->checkSession();
 
-            require(ROOT . VIEWS . 'home.php');
+            require(VIEWS_PATH."logeado.php");
         }
 
     
@@ -32,7 +32,7 @@
             $this->userController = new C_User;
             $user = $this->userController->checkSession();
 
-            require(ROOT . VIEWS . 'login.php');
+            require(FRONT_ROOT.'login.php');
         }
         
     }
