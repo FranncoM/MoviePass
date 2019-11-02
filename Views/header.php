@@ -16,8 +16,11 @@
 
 
 	<!-- Stylesheets -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="<?php echo FRONT_ROOT . "Views/layout/styles/bootstrap.min.css"?>"/>
+
 	<link rel="stylesheet" href="<?php echo FRONT_ROOT . "Views/layout/styles/font-awesome.min.css"?>"/>
+	
 	<link rel="stylesheet" href="<?php echo FRONT_ROOT . "Views/layout/styles/slicknav.min.css"?>"/>
 	<link rel="stylesheet" href="<?php echo FRONT_ROOT . "Views/layout/styles/owl.carousel.min.css"?>"/>
 	<link rel="stylesheet" href="<?php echo FRONT_ROOT . "Views/layout/styles/magnific-popup.css"?>"/>
@@ -25,23 +28,12 @@
 
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="<?php echo FRONT_ROOT . "Views/layout/styles/style.css"?>"/>
-
-
+ 
 </head>
+
 <body>
-<?php
 
-/*	include_once ('DAO/connection2.php');
-	include_once ('DAO/DAOUser2.php');
-
-	connection2 :: openConnection();
-	$usuarios = DAOUser2 :: getAllUsers(connection2 :: getConnection());
-	echo count($usuarios);
-	connection2 :: closeConnection();*/
-
-?>
-
-	<!-- Page Preloder 
+	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
-	</div>-->
+	</div>

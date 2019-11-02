@@ -32,8 +32,18 @@
             $this->userController = new C_User;
             $user = $this->userController->checkSession();
 
-            require(FRONT_ROOT.'login.php');
+            require(VIEWS_PATH.'login.php');
         }
+
+        public function singUp()
+        {
+            $this->userController = new C_User;
+            $user = $this->userController->checkSession();
+
+            require(VIEWS_PATH.'singup.php');
+        }
+
+
         
     }
     

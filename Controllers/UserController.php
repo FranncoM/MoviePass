@@ -96,7 +96,7 @@
                 if($user->getPassword() == $pass)
                 {
                     $this->setSession($user);
-                    $this->viewController->index();
+                    $this->viewController->index(); // aca iria cuando iniciar sesion
     
                 } else {
                     $this->viewController->login();

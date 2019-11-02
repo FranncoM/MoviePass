@@ -22,11 +22,26 @@
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
 			<form class="login100-form validate-form" action="<?php echo FRONT_ROOT . "User/Login" ?>" method='POST'>
 				<span class="login100-form-title p-b-37">
-					Sign In
+					Registro
 				</span>
 
 				<div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
-					<input class="input100" type="text" name="username" placeholder="username or email">
+					<input class="input100" type="text" name="name" placeholder="Nombre">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
+					<input class="input100" type="text" name="lastname" placeholder="Apellido">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
+					<input class="input100" type="text" name="username" placeholder="username">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
+					<input class="input100" type="email" name="email" placeholder="email">
 					<span class="focus-input100"></span>
 				</div>
 
@@ -43,7 +58,7 @@
 
 				<div class="text-center p-t-57 p-b-20">
 					<span class="txt1">
-						Or login with
+						Or register with
 					</span>
 				</div>
 
@@ -57,11 +72,6 @@
 					</a>
 				</div>
 
-				<div class="text-center">
-					<a href="<?php echo FRONT_ROOT ."View/singUp"?>" class="txt2 hov1">
-						Sign Up
-					</a>
-				</div>
 			</form>
 
 			
