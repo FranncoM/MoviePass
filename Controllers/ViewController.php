@@ -17,6 +17,13 @@
 
         }
 
+        public function home() // hay que poner una condicion si esta logeado o no.
+        {
+
+            require(VIEWS_PATH."home.php");
+        }
+
+
         public function index()
         {
 
