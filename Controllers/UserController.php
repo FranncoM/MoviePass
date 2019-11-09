@@ -17,31 +17,39 @@
             $this->viewController = new C_View;
         }
     
-        public function create($name,$lastname,$username,$email,$password,$level,$purchasedTickets,$dateTickets,$type='')
+        public function create($name,$lastname,$username,$email,$password,$level=1)
         {
-            if(!empty($type)){
+            echo "<pre>";
+            echo $_POST['username'];
+            echo "<pre>";
+            
+            if($level=0){
                 //crea el objeto user para luego agregarlo a la base de datos
     
-                $user = new User($name,$lastname,$username,$email,$password,$level,$purchasedTickets="",$dateTickets="");
+                $user = new User(0,$name,$lastname,$username,$email,$password,$level);
     
                 //llama al metodo del dao para guardarlo en la base de datos
     
                 $this->dao->create($user);
     
                 //luego de guardarlo en la base de datos se muestra la vista admin de users
-                //$this->viewController->viewUsersAdmin();
+                $this->viewController->lHome();
             }
             else {
                 //crea el objeto user para luego agregarlo a la base de datos
-                $type='cliente';
-                $user = new User($name,$lastname,$username,$email,$password,$level,$purchasedTickets="",$dateTickets="");
+                
+                $user = new User(0,$name,$lastname,$username,$email,$password,$level);
+                echo "<pre>";
+                print_r($user);
+                echo "<pre>";
+
     
                 //llama al metodo del dao para guardarlo en la base de datos
     
                 $this->dao->create($user);
     
                 //luego de guardarlo en la base de datos se muetra el inicio de la pagina
-                $this->viewController->login();
+                $this->viewController->adminHome();
             }
         }
     
@@ -96,7 +104,7 @@
                 if($user->getPassword() == $pass)
                 {
                     $this->setSession($user);
-                    $this->viewController->index(); // aca iria cuando iniciar sesion
+                    $this->viewController->lHome(); // aca iria cuando iniciar sesion
     
                 } else {
                     $this->viewController->login();
@@ -137,7 +145,7 @@
                    session_start();
     
               unset($_SESSION['user']);
-              $this->viewController->index();
+              $this->viewController->home();
     
         }
     

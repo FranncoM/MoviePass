@@ -24,7 +24,7 @@
 	</section>
 	<!-- Hero section end-->
 
-
+	
 		<!-- Intro section -->
 		<section class="intro-video-section set-bg d-flex align-items-end " data-setbg="<?php echo IMG_PATH."promo-bg.jpg"?>">
 		<a href="https://www.youtube.com/watch?v=IfB65qjLbwc" class="video-play-btn video-popup"><img src="<?php echo IMG_PATH."icons/solid-right-arrow.png"?>" alt="#"></a>
@@ -37,8 +37,6 @@
 	</section>
 	<!-- Intro section end -->
 
-<?php
-   //include("footer.php");
-?>
+
 
 

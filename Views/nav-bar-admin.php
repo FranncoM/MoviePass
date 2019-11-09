@@ -16,7 +16,7 @@
 				</a>
 				<nav class="top-nav-area w-100">
 					<div class="user-panel">
-						<a href="<?php echo FRONT_ROOT."View/login"?>">Iniciar Sesion</a> / <a href="<?php echo FRONT_ROOT."View/singUp"?>">Registrarse</a>
+						<a href="<?php echo FRONT_ROOT."View/infoUser"?>">Cuenta</a> / <a href="<?php echo FRONT_ROOT."User/logout"?>">Cerrar Sesion</a>
 					</div>
 					<!-- Menu -->
 					<ul class="main-menu primary-menu">

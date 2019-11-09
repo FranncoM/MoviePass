@@ -24,13 +24,14 @@
         }
 
 
-        public function index()
+        public function adminHome()
         {
 
             $this->userController = new C_User;
             $user = $this->userController->checkSession();
+          
+            require(VIEWS_PATH."adminHome.php");
 
-            require(VIEWS_PATH."logeado.php");
         }
 
     
@@ -38,6 +39,7 @@
         {
             $this->userController = new C_User;
             $user = $this->userController->checkSession();
+
 
             require(VIEWS_PATH.'login.php');
         }
@@ -51,7 +53,32 @@
         }
 
 
+
+        public function infoUser(){
+
+            //funcion para mostrar los datos del usuario: detalles, boletos comprados;
+
+        }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
     }
-    
+
+       
 ?>

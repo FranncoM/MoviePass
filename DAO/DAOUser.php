@@ -21,16 +21,19 @@
               public function create($_user) {
 
                    // Guardo como string la consulta sql utilizando como values, marcadores de parámetros con nombre (:name) o signos de interrogación (?) por los cuales los valores reales serán sustituidos cuando la sentencia sea ejecutada
-                   $sql = "INSERT INTO users (name, lastname, username, email, password, level, purchased_tickets, date_tickets) VALUES (:name, :lastname, :username, :email, :password, :level, :purchased_tickets, :date_tickets)";
+                   $sql = "INSERT INTO users (name, lastname, username, email, password, level) VALUES (:name, :lastname, :username, :email, :password, :level)";
 
                    $parameters['name'] = $_user->getName();
                    $parameters['lastname'] = $_user->getLastName();
                    $parameters['username'] = $_user->getUserName();
                    $parameters['email'] = $_user->getEmail();
                    $parameters['password'] = $_user->getPassword();
+                   
+                   if($_user->getLevel()>0)
                    $parameters['level'] = $_user->getLevel();
-                   $parameters['purchased_ticket'] = $_user->getPurchasedTickects();
-                   $parameters['date_tickets'] = $_user->DateTickets();
+                   else
+                   $parameters['level'] = 0;
+                
 
                    try {
                          // creo la instancia connection
