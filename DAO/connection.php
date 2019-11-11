@@ -7,7 +7,6 @@
             private $pdoStatament = null;
             private static $instance = null;
 
-            
 
             public function __construct (){
 

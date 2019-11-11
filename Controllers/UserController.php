@@ -45,8 +45,7 @@
             }
         }
     
-    
-    
+
         public function readAll()
         {
             //guarda todos los user de la base de datos en la variable list

@@ -11,7 +11,7 @@
 				<img src="<?php echo IMG_PATH ."logo2.png"?>" alt=""> <!-- cambiar logo-->
 			</a>
 			<ul class="main-menu footer-menu">
-				<li><a href="">Inicio</a></li>
+				<li><a href="<?php echo FRONT_ROOT ."View/home"?>">Inicio</a></li>
 				<li><a href="">Cartelera</a></li>
 				<li><a href="">Proximos Estrenos</a></li>
 				<li><a href="">Horarios</a></li>
