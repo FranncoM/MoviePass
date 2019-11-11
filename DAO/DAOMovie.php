@@ -1,12 +1,12 @@
 <?php namespace DAO;
 
-    use Models\User as M_Usuario;
+    use Models\Movie as M_Movie;
     use DAO\connection as Connection;
     use PDOException;
          /**
           *
           */
-         class DAOUser 
+         class DAOMovie
          {
               private $connection;
 
@@ -18,23 +18,17 @@
               /**
                *
                */
-              public function create($_user) {
+              public function create($_movie) {
 
                    // Guardo como string la consulta sql utilizando como values, marcadores de parámetros con nombre (:name) o signos de interrogación (?) por los cuales los valores reales serán sustituidos cuando la sentencia sea ejecutada
-                   $sql = "INSERT INTO users (name, lastname, username, email, password, level) VALUES (:name, :lastname, :username, :email, :password, :level)";
+                   $sql = "INSERT INTO movies () VALUES ()";
 
-                   $parameters['name'] = $_user->getName();
-                   $parameters['lastname'] = $_user->getLastName();
-                   $parameters['username'] = $_user->getUserName();
-                   $parameters['email'] = $_user->getEmail();
-                   $parameters['password'] = $_user->getPassword();
+                   $parameters['title'] = $_movie->getTitle();
+                   $parameters['category'] = $_movie->getCategory();
+                   $parameters['age'] = $_movie->getAge();
+                   $parameters['id'] = $_movie->getId();
+                   $parameters['id_tmbd'] = $_movie->getId_tmbd();
                    
-                   if($_user->getLevel()>0)
-                   $parameters['level'] = $_user->getLevel();
-                   else
-                   $parameters['level'] = 0;
-                
-
                    try {
                          // creo la instancia connection
                          $this->connection = Connection::getInstance();
@@ -47,12 +41,12 @@
               }
               
               
-              public function read($_email) {
+              public function read($_id) {
                
-                   $sql = "SELECT * FROM users where email = :email";
+                   $sql = "SELECT * FROM movies where id = :id";
 
 
-                   $parameters['email'] = $_email;
+                   $parameters['id'] = $_id;
 
                    try {
                         $this->connection = Connection::getInstance();
@@ -70,10 +64,35 @@
                    else
                         return false;
               }
+
+
+              public function readForCategory($category) {
+        
+                $sql = "SELECT * FROM movies
+                 where category = :category";
+    
+                $parameters['category'] = $category;
+    
+                try {
+                    $this->connection = Connection::getInstance();
+    
+                    $resultSet = $this->connection->execute($sql, $parameters);
+                    
+                } catch(Exception $ex) {
+                    throw $ex;
+                }
+                if(!empty($resultSet)){
+                    
+                return $this->mapear($resultSet);
+                }
+                    
+                else
+                    return false;
+            }
               
 
               public function readAll() {
-                   $sql = "SELECT * FROM users";
+                   $sql = "SELECT * FROM movies";
 
                    try {
                         $this->connection = Connection::getInstance();
@@ -93,19 +112,15 @@
               }
               
 
-              public function edit($_user) {
+              public function edit($_movie) {
 
-                   $sql = "UPDATE users SET name = :name, lastname = :lastname, username = :username, email = :email, password = :password, level = :level, purchased_tickets = :purchased_tickets, date_tickets = :date_tickets";
+                   $sql = "UPDATE movies SET title = :title, category = :category, age = :age, id_tmbd = :id_tmbd";
 
-                   $parameters['name'] = $_user->getName();
-                   $parameters['lastname'] = $_user->getLastName();
-                   $parameters['username'] = $_user->getUserName();
-                   $parameters['email'] = $_user->getEmail();
-                   $parameters['password'] = $_user->getPassword();
-                   $parameters['level'] = $_user->getLevel();
-                   $parameters['purchased_ticket'] = $_user->getPurchasedTickects();
-                   $parameters['date_tickets'] = $_user->DateTickets();
-                  
+                   $parameters['title'] = $_movie->getTitle();
+                   $parameters['category'] = $_movie->getCategory();
+                   $parameters['age'] = $_movie->getAge();
+                   $parameters['id_tmdb'] = $_movie->getId_tmbd();
+    
                    try {
                         // creo la instancia connection
                      $this->connection = Connection::getInstance();
@@ -117,10 +132,10 @@
               }
               
               
-              public function delete($email) {
+              public function delete($_id) {
 
-                   $sql = "DELETE FROM users WHERE email = :email";
-                   $parameters['email'] = $email;
+                   $sql = "DELETE FROM movies WHERE id = :id";
+                   $parameters['id'] = $_id;
 
                    try {
                          
@@ -135,10 +150,8 @@
               }
 
           /**
-            * Transforma el listado de usuario en
-            * objetos de la clase Usuario
-            *
-            * @param  Array $gente Listado de personas a transformar
+            * Transforma el listado de peliculas en
+            * objetos de la clase Movie
             */
             protected function mapear($value) {
 
@@ -146,7 +159,7 @@
 
                 $resp = array_map(function($p){
 
-                    return new M_Usuario($p['id'], $p['name'], $p['lastname'], $p['username'], $p['email'], $p['password'], $p['level']);
+                    return new M_Movie($p['id'], $p['title'], $p['category'], $p['age'],$p['id_tmbd']);
                 }, $value);
                     
                    return count($resp) > 1 ? $resp : $resp['0'];

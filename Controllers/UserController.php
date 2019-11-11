@@ -16,6 +16,9 @@
            $this->dao= new Dao;
             $this->viewController = new C_View;
         }
+        /*
+        *
+        */
     
         public function create($name,$lastname,$username,$email,$password,$level=1)
         {
@@ -45,7 +48,7 @@
                 $this->viewController->login();
             }
         }
-    
+
     
     
         public function readAll()
@@ -62,6 +65,7 @@
             return $list;
     
         }
+        
     
         public function read($email)
         {
@@ -70,21 +74,28 @@
 
             $user = $this->dao->read($email);
     
-            //INCLUYE LA VISTA DONDE SE MUESTRA EL user
-    
-            //FALTA HACER LA VISTA
     
         }
     
         public function delete($email)
         {
-            //BORRA EL user QUE COINCIDE CON EL EMAIL RECIBIDO POR PARAMETROS DE LA BASE DE DATOS
+            $user = $this->dao->read($email);
+
+            if($user->getLevel()==0){
+
+                $this->dao->delete($email);
     
-            $this->dao->delete($email);
+                $this->viewController->listUsers();
+
+            }else {
+                
+                echo "<script> alert('No es administrador');</script>";
+
+                $this->viewController->home();
+
+            }
     
-            //INCLUYE LA VISTA PRINCIPAL
-    
-            $this->viewController->viewUsersAdmin();
+            
         }
     
         public function login ($email='', $pass='')
@@ -131,12 +142,13 @@
         {
             $_SESSION['user'] = $user;
         }
+
     
         public function logout()
-        {
+        {   
             if (session_status() == PHP_SESSION_NONE)
                    session_start();
-    
+
               unset($_SESSION['user']);
               $this->viewController->home();
     
