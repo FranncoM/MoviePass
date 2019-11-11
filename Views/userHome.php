@@ -1,3 +1,6 @@
 <?php
-echo "INICIO SESION COMO USUARIO";
+include("nav-bar-user.php");
+echo"Bienvenido.... [". $user->getName()."]";
 ?>
+
+

@@ -19,11 +19,8 @@
     
         public function create($name,$lastname,$username,$email,$password,$level=1)
         {
-            echo "<pre>";
-            echo $_POST['username'];
-            echo "<pre>";
             
-            if($level=0){
+            if($level==0){
                 //crea el objeto user para luego agregarlo a la base de datos
     
                 $user = new User(0,$name,$lastname,$username,$email,$password,$level);
@@ -32,24 +29,20 @@
     
                 $this->dao->create($user);
     
-                //luego de guardarlo en la base de datos se muestra la vista admin de users
-                $this->viewController->lHome();
+                //una vez guardado en la BD se muestra el home para administradores.
+                $this->viewController->viewsAdminHome();
             }
             else {
                 //crea el objeto user para luego agregarlo a la base de datos
                 
                 $user = new User(0,$name,$lastname,$username,$email,$password,$level);
-                echo "<pre>";
-                print_r($user);
-                echo "<pre>";
-
-    
+                
                 //llama al metodo del dao para guardarlo en la base de datos
     
                 $this->dao->create($user);
     
                 //luego de guardarlo en la base de datos se muetra el inicio de la pagina
-                $this->viewController->adminHome();
+                $this->viewController->login();
             }
         }
     
@@ -60,13 +53,13 @@
             //guarda todos los user de la base de datos en la variable list
     
             $list = $this->dao->readAll();
+
             if (!is_array($list) && $list != false){ // si no hay nada cargado, readall devuelve false
                 $array[] = $list;
                 $list = $array; // para que devuelva un arreglo en caso de haber solo 1 objeto // esto para cuando queremos hacer foreach al listar, ya que no se puede hacer foreach sobre un objeto ni sobre un false
             }
     
             return $list;
-    
     
         }
     
@@ -104,7 +97,7 @@
                 if($user->getPassword() == $pass)
                 {
                     $this->setSession($user);
-                    $this->viewController->lHome(); // aca iria cuando iniciar sesion
+                    $this->viewController->userHome(); 
     
                 } else {
                     $this->viewController->login();

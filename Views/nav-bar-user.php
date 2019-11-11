@@ -20,7 +20,7 @@
 					</div>
 					<!-- Menu -->
 					<ul class="main-menu primary-menu">
-						<li><a href="<?php echo FRONT_ROOT ."Home/Index"?>">Inicio</a></li>
+						<li><a href="<?php echo FRONT_ROOT ."View/home"?>">Inicio</a></li>
 						<li><a href="games.html">Cartelera</a>
 							<ul class="sub-menu">
 								<li><a href="">Ni idea que poner</a></li>

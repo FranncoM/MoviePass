@@ -19,19 +19,43 @@
 
         public function home() // hay que poner una condicion si esta logeado o no.
         {
+            $this->userController = new C_User;
+            $user = $this->userController->checkSession();
 
-            require(VIEWS_PATH."home.php");
+            if($user)
+                require(VIEWS_PATH."userhome.php");
+            else
+                require(VIEWS_PATH."home.php");
+            
+           
+        }
+
+        public function userHome() // hay que poner una condicion si esta logeado o no.
+        {
+            $this->userController = new C_User;
+            $user = $this->userController->checkSession();
+
+            require(VIEWS_PATH."userHome.php");
         }
 
 
-        public function adminHome()
+        public function viewsAdminSettings()            //  por definir
         {
 
             $this->userController = new C_User;
             $user = $this->userController->checkSession();
-          
-            require(VIEWS_PATH."adminHome.php");
 
+            if($user && $user->getLevel()==0)
+            {
+                require(FRONT_ROOT . "adminHome.php");
+
+            }else{
+
+                require(VIEWS_PATH."Home.php");
+                echo '<script>alert("¡NO PUEDES PASAR!");</script>';
+
+            }
+          
         }
 
     
