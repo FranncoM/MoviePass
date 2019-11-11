@@ -78,9 +78,15 @@
 
 
 
-        public function infoUser(){
+        public function listUsers(){
 
             //funcion para mostrar los datos del usuario: detalles, boletos comprados;
+            $this->userController = new C_User;
+            $user = $this->userController->checkSession();
+
+            $list=$this->userController->readAll();
+
+            require(VIEWS_PATH."userlist.php"); //cambiar por pagina de admin para ver a todos los usuarios
 
         }
     

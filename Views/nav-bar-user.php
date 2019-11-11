@@ -29,7 +29,7 @@
 						<li><a href="<?php echo FRONT_ROOT ."Estrenos/Index"?>">Proximos Estrenos</a></li>
 						<li><a href="">Horarios</a></li>
 						<li><a href="">Comprar</a></li>
-						<li><a href="">Contacto</a></li>
+						<li><a href="<?php echo FRONT_ROOT ."View/listUsers"?>">Usuarios</a></li>
 					</ul>
 				</nav>
 			</div>

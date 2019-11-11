@@ -39,20 +39,4 @@
 
 
 
-<?php 
-// API TMDB
-
-
-$baseURL= 'https://api.themoviedb.org/3/';
-$configData = null;
-$baseImgURL= null;
-
-$APIKEY='716239c48567e4c438a86b18b3520440';
-
-
-
-
-
-
-?>
 
