@@ -100,8 +100,9 @@
             $user = $this->userController->checkSession();
 
             $this->movieController = new C_Movie;
-            $C_list = $this->movieController->readAll();
+            $list = $this->movieController->readAll();
             
+
             require(VIEWS_PATH."cartelera.php");
 
         }

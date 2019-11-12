@@ -103,8 +103,6 @@
                    $parameters['email'] = $_user->getEmail();
                    $parameters['password'] = $_user->getPassword();
                    $parameters['level'] = $_user->getLevel();
-                   $parameters['purchased_ticket'] = $_user->getPurchasedTickects();
-                   $parameters['date_tickets'] = $_user->DateTickets();
                   
                    try {
                         // creo la instancia connection

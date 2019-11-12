@@ -99,13 +99,14 @@
 
                         $resultSet = $this->connection->execute($sql);
 
-                   } catch(Exception $ex) {
+                        
+                    } catch(Exception $ex) {
 
                        throw $ex;
-                   }
+                    }
 
                    if(!empty($resultSet))
-                        return $this->mapear($resultSet);
+                        return $this->mapear($resultSet); 
                    else
                         return false;
 
@@ -158,8 +159,8 @@
                 $value = is_array($value) ? $value : [];
 
                 $resp = array_map(function($p){
-
-                    return new M_Movie($p['id'], $p['title'], $p['category'], $p['age'],$p['id_tmbd']);
+                    
+                    return new M_Movie($p['id'], $p['title'], $p['category'], $p['age'],$p['id_tmbd']);  
                 }, $value);
                     
                    return count($resp) > 1 ? $resp : $resp['0'];

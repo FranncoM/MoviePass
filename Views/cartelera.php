@@ -40,11 +40,11 @@ include("nav-bar-user.php");?>
                     <tr>
                       <td><?php echo $C_list->getId() ?></td>
                       <td><?php echo $C_list->getTitle()?></td>
-                      <td><?php echo  $C_list->getCategory()?></td>
-                      <td><?php echo  $C_list->getAge()?></td>
-                      <td><?php echo  $C_list->getId_tmbd()?></td>
+                      <td><?php echo $C_list->getCategory()?></td>
+                      <td><?php echo $C_list->getAge()?></td>
+                      <td><?php echo $C_list->getId_tmbd()?></td>
                       <td>
-                        <button type="submit" name="email" class="btn btn-danger" value="<?php echo $user->getId() ?>"> Elminar </button>
+                        <button type="submit" name="id" class="btn btn-danger" value="<?php echo $user->getId() ?>"> Elminar </button>
                       </td>
                     </tr>
                   <?php

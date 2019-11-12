@@ -9,7 +9,7 @@
             private $id_tmbd;
 
 
-            public function __contruct($id='',$title='',$category='',$age='',$id_tmbd=""){
+            public function __construct($id='',$title='',$category='',$age='',$id_tmbd=""){
 
                 $this->id=$id;
                 $this->title=$title;
@@ -65,12 +65,12 @@
 
                 return $this->age;
 
+            }
+
+            public function getId_tmbd(){
+
+                return  $this->id_tmbd;
+
+            }
         }
-
-        public function getId_tmbd($id_tmbd){
-
-            $this->id_tmbd=$id_tmbd;
-
-        }
-    }
 ?>
