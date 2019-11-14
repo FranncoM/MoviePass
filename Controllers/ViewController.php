@@ -106,6 +106,16 @@
             require(VIEWS_PATH."cartelera.php");
 
         }
+
+        public function viewAddMovie(){
+
+            $this->userController = new C_User;
+            $user = $this->userController->checkSession();
+
+
+            require(VIEWS_PATH."addMovie.php");
+
+        }
     
 
 

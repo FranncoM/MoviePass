@@ -23,7 +23,7 @@
 						<li><a href="<?php echo FRONT_ROOT ."View/home"?>">Inicio</a></li>
 						<li><a href="<?php echo FRONT_ROOT ."View/cartelera"?>">Cartelera</a>
 							<ul class="sub-menu">
-								<li><a href="">Ni idea que poner</a></li>
+								<li><a href="<?php echo FRONT_ROOT ."View/viewAddMovie"?>">Añadir pelicula</a></li>
 							</ul>
 						</li>
 						<li><a href="<?php echo FRONT_ROOT ."Estrenos/Index"?>">Proximos Estrenos</a></li>

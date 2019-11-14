@@ -20,13 +20,15 @@ class MovieController
     *
     */
 
-    public function create($title,$category,$age)
+    public function create($title,$category,$age,$id_tmbd)
     {
                     
-            $movie = new Movie(0,$title,$category,$age);
+            $movie = new Movie(0,$title,$category,$age,$id_tmbd);
             
 
             $this->dao->create($movie);
+
+            $this->viewController->cartelera();
   
     }
 
@@ -41,7 +43,7 @@ class MovieController
         if (!is_array($list) && $list != false){ // si no hay nada cargado, readall devuelve false
             $array[] = $list;
             $list = $array; // para que devuelva un arreglo en caso de haber solo 1 objeto // esto para cuando queremos hacer foreach al listar, ya que no se puede hacer foreach sobre un objeto ni sobre un false
-        }
+        }else $list=[];
        
         return $list;
 
@@ -76,6 +78,7 @@ class MovieController
     {
         
         $this->dao->delete($id);
+        $this->viewController->cartelera();
         
 
         

@@ -21,12 +21,11 @@
               public function create($_movie) {
 
                    // Guardo como string la consulta sql utilizando como values, marcadores de parámetros con nombre (:name) o signos de interrogación (?) por los cuales los valores reales serán sustituidos cuando la sentencia sea ejecutada
-                   $sql = "INSERT INTO movies () VALUES ()";
+                   $sql = "INSERT INTO movies (title,category,age,id_tmbd) VALUES (:title,:category, :age, :id_tmbd)";
 
                    $parameters['title'] = $_movie->getTitle();
                    $parameters['category'] = $_movie->getCategory();
                    $parameters['age'] = $_movie->getAge();
-                   $parameters['id'] = $_movie->getId();
                    $parameters['id_tmbd'] = $_movie->getId_tmbd();
                    
                    try {

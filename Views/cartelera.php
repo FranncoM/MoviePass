@@ -44,7 +44,7 @@ include("nav-bar-user.php");?>
                       <td><?php echo $C_list->getAge()?></td>
                       <td><?php echo $C_list->getId_tmbd()?></td>
                       <td>
-                        <button type="submit" name="id" class="btn btn-danger" value="<?php echo $user->getId() ?>"> Elminar </button>
+                        <button type="submit" name="id" class="btn btn-danger" value="<?php echo $C_list->getId() ?>"> Elminar </button>
                       </td>
                     </tr>
                   <?php
