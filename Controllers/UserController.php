@@ -77,11 +77,14 @@
     
         }
     
-        public function delete($email)
+        public function delete($email) 
         {
+            
             $user = $this->dao->read($email);
+            
+            
 
-            if($user->getLevel()==0){
+            if($_SESSION['user']->getLevel()==0 && $user->getId() !=1){      // Solo borra si el usuario en sesion es admin(El user con id=1 no se pude eliminar)
 
                 $this->dao->delete($email);
     
@@ -89,13 +92,12 @@
 
             }else {
                 
-                echo "<script> alert('No es administrador');</script>";
+                echo "<script> alert('Accion no disponible');</script>";
 
                 $this->viewController->home();
 
             }
-    
-            
+
         }
     
         public function login ($email='', $pass='')

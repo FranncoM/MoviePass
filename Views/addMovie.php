@@ -50,8 +50,9 @@ include("nav-bar-user.php");?>
                     <select name='age'>
                     
                         <option value='apt'>APT</option>
-                        <option value='+13'>+13</option>
-                        <option value='+18'>+18</option>
+                        <option value='13'>+13</option>
+                        <option value='16'>+13</option>
+                        <option value='18'>+18</option>
                     </select></td>
                 <td><input type='number' name='id_tmbd'></td> <!-- capaz lo podes automatizar o cambiar la ventana y agregar una pelicula desde la api-->
                 <td><button type="submit" class="btn btn-success" > Añadir </button></td>
