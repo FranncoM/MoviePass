@@ -89,17 +89,18 @@
                     return false;
             }
 
-            public function readForName($_name) {
+            public function readForName($title) {
                
-                $sql = "SELECT * FROM movies where title = :name";
+                $sql = "SELECT * FROM movies where title LIKE :title limit 1";
 
-
-                $parameters['name'] = $_name;
+                $parameters['title'] =$title;
+               
 
                 try {
                      $this->connection = Connection::getInstance();
 
                      $resultSet = $this->connection->execute($sql, $parameters);
+                                        
                      
                 } catch(Exception $ex) {
                     throw $ex;

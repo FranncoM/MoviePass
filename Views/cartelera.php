@@ -6,10 +6,10 @@ include("nav-bar-user.php");?>
 
 <section class="page-top-section set-bg" data-setbg="img/page-top-bg/1.jpg" style="background: #330d38;">
 		<div class="page-info">
-			<h2>Lista de Usuarios</h2>
+			<h2>Lista de Peliculas</h2>
 			<div class="site-breadcrumb">
 				<a href="">Administrar</a>  /
-				<span>Usuarios</span>
+				<span>Peliculas</span>
 			</div>
 		</div>
 	</section>

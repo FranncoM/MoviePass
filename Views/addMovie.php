@@ -82,11 +82,12 @@ include("nav-bar-user.php");?>
                     </select>
                 </td>
                 <td>
-                  <select name='room'>
+                  <select name='name_room'>
                       <option value='Sala 1'>Sala 1</option>
                       <option value='Sala 2'>Sala 2</option>
                       <option value='Sala 3'>Sala 3</option>
                       <option value='Sala 4'>Sala 4</option>
+                  
                   </select>
                 </td>
 

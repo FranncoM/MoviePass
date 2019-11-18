@@ -126,7 +126,9 @@
             $user = $this->userController->checkSession();
 
             $this->sessionController = new C_Session;
-            $S_list= $this->sessionController->readAll();    
+            //$S_list= $this->sessionController->readAll();    
+            $S_list= $this->sessionController->readFor_theather(1);    
+
 
            require(VIEWS_PATH."viewsession.php");
 

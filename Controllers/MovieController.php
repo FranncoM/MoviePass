@@ -74,13 +74,15 @@ class MovieController
 
     }
 
-    public function readName($name)
+    public function getId_for_name($name)
     {
         //DEVUELVE EL user CON ESE EMAIL EN CASO DE EXSISTIR
 
-
+       
          $movie = $this->dao->readForName($name);
-
+        
+        
+         
          return $movie->getId();
 
     }

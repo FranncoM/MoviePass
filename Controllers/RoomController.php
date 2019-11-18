@@ -1,22 +1,19 @@
 <?php namespace Controllers;
 
-use Models\Movie as Movie;
-use Models\Session as Session;
+use Models\Room as Room;
 
-use Controllers\MovieController as C_Movie;
-use Controllers\RoomController as C_Room;
+
 use Controllers\ViewController as C_View;
 
-use DAO\DAOSession as Dao;
+use DAO\DAORoom as Dao;
 
 
 
 
-class SessionController{
+class RoomController{
 
     protected $dao;
-    private $movieController;
-    private $roomController;
+    
     private $viewController;
 
 
@@ -25,29 +22,20 @@ class SessionController{
     function __construct()
     {
         $this->dao= new Dao;
-        $this->movieController = new C_Movie;
-        $this->roomController = new C_Room;
+        
         $this->viewController = new C_View;
     }
 
 
-    public function create($title,$category,$age,$id_tmbd,$id_theather,$date,$time,$name_room)
-    {       
-
-            $this->movieController->create($title,$category,$age,$id_tmbd);
-
-            $id_movie=$this->movieController->getId_for_name($title);
-
-            
-            $id_room=$this->roomController->getId_for_name_theather($name_room,$id_theather);
-
-
-            $session = new Session($id_theather,$id_room,$id_movie,$date,$time);
+    public function create($theather,$name,$tickets)
+    {           
             
 
-            $this->dao->create($session);
+            $room = new Room($theather,$name,$tickets);
+            
 
-            $this->viewController->viewList_sessions();
+            $this->dao->create($room);
+
   
     }
 
@@ -55,7 +43,7 @@ class SessionController{
     {
         //guarda todos los user de la base de datos en la variable list
 
-        $list = $this->dao->readAll_sessions();
+        $list = $this->dao->readAll();
       
         
         if (!is_array($list) && $list != false){ // si no hay nada cargado, readall devuelve false
@@ -69,6 +57,15 @@ class SessionController{
         
         return $list;
     
+    }
+
+    public function getId_for_name_theather($name_room,$id_theather)
+    {
+        $name_room=("'".$name_room."'");
+
+        $room = $this->dao->readForNameTheather($name_room,$id_theather);
+         
+        return $room->getId();
     }
 
 
@@ -88,9 +85,6 @@ class SessionController{
         
         return $list;
     }
-
-
-
 
 
 }

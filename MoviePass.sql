@@ -44,27 +44,30 @@ foreign key (id_theather) references theathers(id_theather));
 insert into rooms(id_theather, name , tickets ) values (1,'Sala 1',50); /*Ambassador*/
 insert into rooms(id_theather, name , tickets) values (1,'Sala 2',50);	/*Ambassador*/
 insert into rooms(id_theather, name , tickets) values (1,'Sala 3',50);	/*Ambassador*/
+insert into rooms(id_theather, name , tickets) values (1,'Sala 4',50);	/*Ambassador*/
+
 
 insert into rooms(id_theather, name , tickets) values (2,'Sala 1',50);  /*Cine Paseo Aldrey*/
 insert into rooms(id_theather, name , tickets) values (2,'Sala 2',50);	/*Cine Paseo Aldrey*/
 insert into rooms(id_theather, name , tickets) values (2,'Sala 3',50);	/*Cine Paseo Aldrey*/
+insert into rooms(id_theather, name , tickets) values (2,'Sala 4',50);	/*Cine Paseo Aldrey*/
 
 /***************************Sala_X_pelicula******************************************/
 
-create table room_x_movie (id_rm int auto_increment primary key,id_room int not null,id_movie int default (0), date datetime not null ,
+create table room_x_movie (id_rm int auto_increment primary key,id_room int not null,id_movie int default (0), date date not null ,time time not null ,
 foreign key(id_room) references rooms(id_room),foreign key (id_movie)references movies(id));
 
 
 /**Volcado en Sala_X_pelicula**/
 
-insert into room_x_movie(id_room,id_movie,date)values(1,1,'2019-12-10 18:00');
-insert into room_x_movie(id_room,id_movie,date)values(2,2,'2019-12-10 18:00');
-insert into room_x_movie(id_room,id_movie,date)values(3,3,'2019-12-10 18:00');
-insert into room_x_movie(id_room,id_movie,date)values(3,1,'2019-12-12 20:15');
+insert into room_x_movie(id_room,id_movie,date,time)values(1,1,'2019-12-10' ,'18:00');
+insert into room_x_movie(id_room,id_movie,date,time)values(2,2,'2019-12-10',' 18:00');
+insert into room_x_movie(id_room,id_movie,date,time)values(3,3,'2019-12-10',' 18:00');
+insert into room_x_movie(id_room,id_movie,date,time)values(3,1,'2019-12-12',' 20:15');
 
-insert into room_x_movie(id_room,id_movie,date)values(4,1,'2019-12-10 18:30');
-insert into room_x_movie(id_room,id_movie,date)values(5,2,'2019-12-10 20:00');
-insert into room_x_movie(id_room,id_movie,date)values(6,3,'2019-12-10 18:00');
+insert into room_x_movie(id_room,id_movie,date,time)values(4,1,'2019-12-10',' 18:30');
+insert into room_x_movie(id_room,id_movie,date,time)values(5,2,'2019-12-10',' 20:00');
+insert into room_x_movie(id_room,id_movie,date,time)values(6,3,'2019-12-10',' 18:00');
 
 /*select * from room_x_movie r where date(r.date)= '2019-12-12';*/
 
@@ -100,14 +103,18 @@ select * from movies m where m.age = '13';
 
 select * from movies m where m.age = 'apt';
 
-/*Consulta Peliculas en que sala********/
+/*Consulta Todas las sesiones********/
 
-select t.name as 'cine',r.name as 'sala',m.title as 'Pelicula',rm.date as 'Horario',r.tickets as 'Boletos disponibles' 
+select t.name as 'cine',r.name as 'sala',m.title as 'Pelicula',rm.date as 'Fecha',rm.time as 'Hora',r.tickets as 'Boletos disponibles' 
 from room_x_movie rm inner join  rooms r on rm.id_room = r.id_room inner join theathers t on t.id_theather = r.id_theather inner join movies m on rm.id_movie = m.id order by t.name;
+
+
+select t.name as 'cine',r.name as 'sala',m.title as 'Pelicula',rm.date as 'Fecha',rm.time as 'Hora',r.tickets as 'Boletos disponibles' 
+from room_x_movie rm inner join  rooms r on rm.id_room = r.id_room inner join theathers t on t.id_theather = r.id_theather inner join movies m on rm.id_movie = m.id where t.id_theather = 2 order by t.name ;
 /*************/
 
 
-
+SELECT * FROM rooms where id_theather = 1;
 
 select * from tickets; 
 select * from purchase;
@@ -115,3 +122,4 @@ select curdate();
 
 select p.date as fecha ,p.time as hora, p.monto from purchase p where p.date = '2019-11-17';
 
+/* prueba*/
