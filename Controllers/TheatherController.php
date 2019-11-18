@@ -1,11 +1,11 @@
 <?php namespace Controllers;
 
-use Models\Movie as Movie;
-use DAO\DAOMovie as Dao;
+use Models\Theather as Theather;
+use DAO\DAOTheather as Dao;
 
 use Controllers\ViewController as C_View;
 
-class MovieController
+class TheatherController
 {
     protected $dao;
     private $viewController;
@@ -20,13 +20,13 @@ class MovieController
     *
     */
 
-    public function create($title,$category,$age,$id_tmbd)
+    public function create($name,$adress,$price,$full_capacity)
     {
                     
-            $movie = new Movie(0,$title,$category,$age,$id_tmbd);
+            $theather = new Theather(0,$name,$adress,$price,$full_capacity);
             
 
-            $this->dao->create($movie);
+            $this->dao->create($theather);
 
             $this->viewController->cartelera();
   
@@ -58,30 +58,19 @@ class MovieController
         //DEVUELVE EL user CON ESE EMAIL EN CASO DE EXSISTIR
 
 
-        return $movie = $this->dao->read($id);
+        return $theather = $this->dao->read($id);
 
 
     }
 
 
-    public function readCategory($cat)
+    public function readadress($cat)
     {
         //DEVUELVE EL user CON ESE EMAIL EN CASO DE EXSISTIR
 
 
-        return $list = $this->dao->readForCategory($cat);
+        return $list = $this->dao->readForadress($cat);
 
-
-    }
-
-    public function readName($name)
-    {
-        //DEVUELVE EL user CON ESE EMAIL EN CASO DE EXSISTIR
-
-
-         $movie = $this->dao->readForName($name);
-
-         return $movie->getId();
 
     }
 

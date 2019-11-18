@@ -3,6 +3,8 @@
 
     use Controllers\UserController as C_User;
     use Controllers\MovieController as C_Movie;
+    use Controllers\TheatherController as C_theather;
+    use Controllers\SessionController as C_Session;
 
 
     use models\User as M_User;
@@ -15,6 +17,8 @@
 
         private $userController;
         private $movieController;
+        private $theatherController;
+        private $sessionController;
 
         public function __construct()
         {
@@ -26,11 +30,7 @@
             $this->userController = new C_User;
             $user = $this->userController->checkSession();
 
-            if($user)
-                require(VIEWS_PATH."userHome.php");
-            else
-                require(VIEWS_PATH."home.php");
-            
+            require(VIEWS_PATH."home.php");    
            
         }
 
@@ -112,11 +112,26 @@
             $this->userController = new C_User;
             $user = $this->userController->checkSession();
 
+            //hacer lista de cines
+            $this->theatherController= new C_theather;
+            $T_list=$this->theatherController->readAll();
 
             require(VIEWS_PATH."addMovie.php");
 
         }
-    
+        
+        public function viewList_sessions(){
+
+            $this->userController = new C_User;
+            $user = $this->userController->checkSession();
+
+            $this->sessionController = new C_Session;
+            $S_list= $this->sessionController->readAll();    
+
+           require(VIEWS_PATH."viewsession.php");
+
+
+        }
 
 
 

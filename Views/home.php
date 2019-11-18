@@ -1,5 +1,11 @@
 <?php
-    //include_once("header.php");
+	//include_once("header.php");
+	if($user){
+
+		if($user->getLevel()==0){
+			include("nav-bar-admin.php");
+		}else include("nav-bar-user.php");
+	}else
     include('nav-bar.php');
 ?>
 	<!-- Hero section -->

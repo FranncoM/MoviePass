@@ -1,45 +1,85 @@
 <?php namespace Models;
 
-class Theather {
 
+class Theather
+{
     private $idTheather;
-    private $price; // unico valor //
-    private $adress;
     private $name;
+    private $adress;
+    private $price; // unico valor //
     private $fullCapacity;
 
-    public function __construct($idTheather, $price, $adress, $name, $fullCapacity){
+    public function __construct($idTheather = '', $name = '', $adress = '', $price = '', $fullCapacity = '')
+    {
 
         $this->idTheather = $idTheather;
-        $this->price = $price;
-        $this->adress = $adress;
         $this->name = $name;
+        $this->adress = $adress;
+        $this->price = $price;
         $this->fullCapacity = $fullCapacity;
-
     }
 
 
-    public function getId(){
+    ////////////** SETTERS *//////////////////
+
+
+    public function setId($id)
+    {
+
+        $this->id = $id;
+    }
+
+    public function setName($name)
+    {
+
+        $this->name = $name;
+    }
+
+    public function setAdress($adress)
+    {
+        $this->adress = $adress;
+    }
+
+    public function setPrice($price)
+    {
+
+        $this->price = $price;
+    }
+
+    public function setFullCapacity($fullCapacity)
+    {
+
+        $this->fullCapacity = $fullCapacity;
+    }
+
+    ////////////** GETTERS *//////////////////
+
+    public function getId()
+    {
 
         return $this->idTheather;
     }
 
-    public function getTicket(){
-
-        return $this->price;
-    }
-
-    public function getAdress(){
-
-        return $this->adress;
-    }
-
-    public function getName(){
+    public function getName()
+    {
 
         return $this->name;
     }
 
-    public function getFullCapacity(){
+    public function getAdress()
+    {
+
+        return $this->adress;
+    }
+
+    public function getTicket()
+    {
+
+        return $this->price;
+    }
+
+    public function getFullCapacity()
+    {
 
         return $this->fullCapacity;
     }

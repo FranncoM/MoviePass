@@ -1,12 +1,12 @@
 <?php namespace DAO;
 
-    use Models\Movie as M_Movie;
+    use Models\Theather as M_Theather;
     use DAO\connection as Connection;
     use PDOException;
          /**
           *
           */
-         class DAOMovie
+         class DAOTheather
          {
               private $connection;
 
@@ -18,15 +18,15 @@
               /**
                *
                */
-              public function create($_movie) {
+              public function create($_theather) {
 
                    // Guardo como string la consulta sql utilizando como values, marcadores de parámetros con nombre (:name) o signos de interrogación (?) por los cuales los valores reales serán sustituidos cuando la sentencia sea ejecutada
-                   $sql = "INSERT INTO movies (title,category,age,id_tmbd) VALUES (:title,:category, :age, :id_tmbd)";
+                   $sql = "INSERT INTO theathers (name,adress,price,full_capacity) VALUES (:name,:adress,:price,:full_capacity)";
 
-                   $parameters['title'] = $_movie->getTitle();
-                   $parameters['category'] = $_movie->getCategory();
-                   $parameters['age'] = $_movie->getAge();
-                   $parameters['id_tmbd'] = $_movie->getId_tmbd();
+                   $parameters['name'] = $_theather->getName();
+                   $parameters['adress'] = $_theather->getAdress();
+                   $parameters['price'] = $_theather->getPrice();
+                   $parameters['full_capacity'] = $_theather->getFull_capacity();
                    
                    try {
                          // creo la instancia connection
@@ -42,7 +42,7 @@
               
               public function read($_id) {
                
-                   $sql = "SELECT * FROM movies where id = :id";
+                   $sql = "SELECT * FROM theathers where id_theather = :id";
 
 
                    $parameters['id'] = $_id;
@@ -65,62 +65,17 @@
               }
 
 
-              public function readForCategory($category) {
-        
-                $sql = "SELECT * FROM movies
-                 where category = :category";
-    
-                $parameters['category'] = $category;
-    
-                try {
-                    $this->connection = Connection::getInstance();
-    
-                    $resultSet = $this->connection->execute($sql, $parameters);
-                    
-                } catch(Exception $ex) {
-                    throw $ex;
-                }
-                if(!empty($resultSet)){
-                    
-                return $this->mapear($resultSet);
-                }
-                    
-                else
-                    return false;
-            }
-
-            public function readForName($_name) {
-               
-                $sql = "SELECT * FROM movies where title = :name";
-
-
-                $parameters['name'] = $_name;
-
-                try {
-                     $this->connection = Connection::getInstance();
-
-                     $resultSet = $this->connection->execute($sql, $parameters);
-                     
-                } catch(Exception $ex) {
-                    throw $ex;
-                }
-                if(!empty($resultSet)){
-                     
-                 return $this->mapear($resultSet);
-                }
-                    
-                else
-                     return false;
-           }
               
 
               public function readAll() {
-                   $sql = "SELECT * FROM movies";
+                   $sql = "SELECT * FROM theathers";
 
                    try {
                         $this->connection = Connection::getInstance();
 
                         $resultSet = $this->connection->execute($sql);
+                     /*    echo '<pre>';
+                        print_r($resultSet);*/
 
                         
                     } catch(Exception $ex) {
@@ -136,14 +91,14 @@
               }
               
 
-              public function edit($_movie) {
+              public function edit($_theather) { 
 
-                   $sql = "UPDATE movies SET title = :title, category = :category, age = :age, id_tmbd = :id_tmbd";
+                   $sql = "UPDATE theathers SET name = :name, adress = :adress, price = :price, full_capacity = :full_capacity";
 
-                   $parameters['title'] = $_movie->getTitle();
-                   $parameters['category'] = $_movie->getCategory();
-                   $parameters['age'] = $_movie->getAge();
-                   $parameters['id_tmdb'] = $_movie->getId_tmbd();
+                   $parameters['name'] = $_theather->getName();
+                   $parameters['adress'] = $_theather->getAdress();
+                   $parameters['price'] = $_theather->getPrice();
+                   $parameters['id_tmdb'] = $_theather->getfull_capacity();
     
                    try {
                         // creo la instancia connection
@@ -158,7 +113,7 @@
               
               public function delete($_id) {
 
-                   $sql = "DELETE FROM movies WHERE id = :id";
+                   $sql = "DELETE FROM theathers WHERE id = :id";
                    $parameters['id'] = $_id;
 
                    try {
@@ -168,7 +123,7 @@
 
                    } catch(PDOException $Exception) {
 
-                    throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+                    throw new MyDatabaseException( $Exception->getMessprice( ) , $Exception->getCode( ) );
 
                 }
               }
@@ -183,7 +138,7 @@
 
                 $resp = array_map(function($p){
                     
-                    return new M_Movie($p['id'], $p['title'], $p['category'], $p['age'],$p['id_tmbd']);  
+                    return new M_theather($p['id_theather'], $p['name'], $p['adress'], $p['price'],$p['full_capacity']);  
                 }, $value);
                     
                    return count($resp) > 1 ? $resp : $resp['0'];
