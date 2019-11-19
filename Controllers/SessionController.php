@@ -31,12 +31,12 @@ class SessionController{
     }
 
 
-    public function create($title,$category,$age,$id_tmbd,$id_theather,$date,$time,$name_room)
+    public function create($id_movie,$id_theather,$date,$time,$name_room)
     {       
 
-            $this->movieController->create($title,$category,$age,$id_tmbd);
+           // $this->movieController->create($title,$category,$age,$id_tmbd);
 
-            $id_movie=$this->movieController->getId_for_name($title);
+           // $id_movie=$this->movieController->getId_for_name($title);
 
             
             $id_room=$this->roomController->getId_for_name_theather($name_room,$id_theather);
@@ -90,7 +90,22 @@ class SessionController{
     }
 
 
+    public function getSchedules_for_theather($id_theather){
 
+        $list = $this->dao->read($id_theather);
+      
+        
+        if (!is_array($list) && $list != false){ // si no hay nada cargado, readall devuelve false
+            $array[] = $list;
+            $list = $array; // para que devuelva un arreglo en caso de haber solo 1 objeto // esto para cuando queremos hacer foreach al listar, ya que no se puede hacer foreach sobre un objeto ni sobre un false
+            
+        }else if($list ==false){
+            $list=[];
+
+        }
+        
+        return $list;
+    }
 
 
 }

@@ -6,16 +6,16 @@ include("nav-bar-user.php");?>
 
 <section class="page-top-section set-bg" data-setbg="img/page-top-bg/1.jpg" style="background: #330d38;">
 		<div class="page-info">
-			<h2>Lista de Peliculas</h2>
+			<h2>Lista de Sessiones</h2>
 			<div class="site-breadcrumb">
 				<a href="">Administrar</a>  /
-				<span>Peliculas</span>
+				<span>Sessiones</span>
 			</div>
 		</div>
 	</section>
     <!-- Page top end-->
 
-<form action ="<?php echo FRONT_ROOT."Movie/delete"?>" method="POST">
+<form action ="<?php echo FRONT_ROOT.""?>" method="POST"> <!--Funcion para comprar-->
   <div class="wrapper row4" style="background: #330d38;" >
     <!-- main body -->
     <main class="hoc container clear" > 
@@ -24,27 +24,30 @@ include("nav-bar-user.php");?>
           <table style="text-align:center;" class="table table-responsive table-bordered">
             <thead class="table-active">
               <tr>
-                <th style="width: 10%;">ID</th>
-                <th style="width: 15%;">Titulo</th>
-                <th style="width: 30%;">Categoria</th>
-                <th style="width: 30%;">Edad</th>
-                <th style="width: 15%;">TMDB</th>
-                <th style="width: 10%;">Eliminar</th>
+                <th style="width: 10%;">Cine</th>
+                <th style="width: 15%;">Pelicula</th>
+                <th style="width: 30%;">Fecha</th>
+                <th style="width: 15%;">Hora</th>
+                <th style="width: 10%;">Asientos Disponibles</th>
+                <th style="width: 10%;">Cantidad</th>
+
               </tr>
             </thead>
             <tbody>
               <?php
-                foreach($list as $C_list)
+                foreach($S_list as $list)
                 {
                   ?>
                     <tr>
-                      <td><?php echo $C_list->getId() ?></td>
-                      <td><?php echo $C_list->getTitle()?></td>
-                      <td><?php echo $C_list->getCategory()?></td>
-                      <td><?php echo $C_list->getAge()?></td>
-                      <td><?php echo $C_list->getId_tmbd()?></td>
+                      <td><?php echo $list->getTheather() ?></td>
+                      <td><?php echo $list->getMovie()?></td>
+                      <td><?php echo $list->getDate()?></td>
+                      <td><?php echo $list->getTime()?></td>
+                      <td><?php echo $list->getTickets()?></td>
+                      <td><input type='number' name='tickets'></input></td>
+
                       <td>
-                        <button type="submit" name="id" class="btn btn-danger" value="<?php echo $C_list->getId() ?>"> Elminar </button>
+                        <button type="submit" name="id" class="btn btn-primary" value="<?php echo $list->getId() ?>">Comprar</button>
                       </td>
                     </tr>
                   <?php

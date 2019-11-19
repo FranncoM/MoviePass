@@ -21,16 +21,17 @@
 					<!-- Menu -->
 					<ul class="main-menu primary-menu">
 						<li><a href="<?php echo FRONT_ROOT ."View/home"?>">Inicio</a></li>
-						<li><a href="<?php echo FRONT_ROOT ."View/cartelera"?>">Cartelera</a>
+						<li><a href="<?php echo FRONT_ROOT ."View/adminCartelera"?>">Cartelera</a>
 							<ul class="sub-menu">
 								<li><a href="<?php echo FRONT_ROOT ."View/viewAddMovie"?>">Añadir pelicula</a></li>
 							</ul>
 						</li>
-						<li><a href="<?php echo FRONT_ROOT ."Estrenos/Index"?>">Proximos Estrenos</a></li>
-						<li><a href="">Horarios</a></li>
-						<li><a href="">Comprar</a></li>
 						<li><a href="<?php echo FRONT_ROOT ."View/listUsers"?>">Usuarios</a></li>
-						<li><a href="<?php echo FRONT_ROOT ."View/viewList_sessions"?>">Sesiones</a></li>
+						<li><a href="<?php echo FRONT_ROOT ."View/viewList_sessions"?>">Sesiones</a>
+							<ul class="sub-menu">
+								<li><a href="<?php echo FRONT_ROOT ."View/viewAddSession"?>">Crear Sesion</a></li>
+							</ul>
+						</li>
 					</ul>
 				</nav>
 			</div>

@@ -21,15 +21,8 @@
 					<!-- Menu -->
 					<ul class="main-menu primary-menu">
 						<li><a href="<?php echo FRONT_ROOT ."View/home"?>">Inicio</a></li>
-						<li><a href="">Cartelera</a>
-							<ul class="sub-menu">
-								<li><a href="">Ni idea que poner</a></li>
-							</ul>
-						</li>
-						<li><a href="<?php echo FRONT_ROOT ."View/estrenos"?>">Proximos Estrenos</a></li>
+						<li><a href="<?php echo FRONT_ROOT ."View/viewCartelera"?>">Cartelera</a></li>
 						<li><a href="">Horarios</a></li>
-						<li><a href="">Comprar</a></li>
-						<li><a href="<?php echo FRONT_ROOT ."View/listUsers"?>">Usuarios</a></li>
 					</ul>
 				</nav>
 			</div>

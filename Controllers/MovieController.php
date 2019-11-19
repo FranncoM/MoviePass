@@ -28,7 +28,7 @@ class MovieController
 
             $this->dao->create($movie);
 
-            $this->viewController->cartelera();
+            $this->viewController->adminCartelera();
   
     }
 
@@ -94,7 +94,7 @@ class MovieController
     {
         
         $this->dao->delete($id);
-        $this->viewController->cartelera();
+        $this->viewController->adminCartelera();
         
 
         

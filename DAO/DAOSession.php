@@ -135,6 +135,29 @@ class DAOSession
                return false;
      }
 
+     public function readForMovieTheather($theather)
+     {
+          $sql = "SELECT rm.id_rm, t.name AS theather , r.name AS room, m.title AS film, rm.date, rm.time, r.tickets
+               FROM room_x_movie rm INNER JOIN  rooms r ON rm.id_room = r.id_room INNER JOIN theathers t ON t.id_theather = r.id_theather INNER JOIN movies m ON rm.id_movie = m.id
+                where t.id_theather = :theather;";
+
+          $parameters['theather']=$theather;
+
+          try {
+               $this->connection = Connection::getInstance();
+
+               $resultSet = $this->connection->execute($sql,$parameters);
+          } catch (Exception $ex) {
+
+               throw $ex;
+          }
+
+          if (!empty($resultSet))
+               return $this->mapear($resultSet);
+          else
+               return false;
+     }
+
 
      public function edit($_movie)
      { //modificar//////////////////////////////////////////

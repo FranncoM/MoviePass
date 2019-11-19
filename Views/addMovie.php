@@ -15,10 +15,10 @@ include("nav-bar-user.php");?>
 	</section>
     <!-- Page top end-->
 
-<form action ="<?php echo FRONT_ROOT."Session/create"?>" method="POST">
+<form action ="<?php echo FRONT_ROOT."Movie/create"?>" method="POST">
   <div class="wrapper row4" style="background: #330d38;" >
     <!-- main body -->
-    <main class="hoc container clear" > 
+    <main class="hoc container clear"  > 
       <div class="content" style="background: #ffffff;"> 
         <div class="scrollable">
           <table style="text-align:center;" class="table table-responsive table-bordered">
@@ -55,42 +55,6 @@ include("nav-bar-user.php");?>
                         <option value='18'>+18</option>
                     </select></td>
                 <td><input type='number' name='id_tmbd'></td> <!-- capaz lo podes automatizar o cambiar la ventana y agregar una pelicula desde la api-->
-                <td>
-                  <select name='id_theather'>
-                    <option>Seleccionar un cine</option>
-
-                    <?php foreach ($T_list as $key => $theater) { ?>
-                      <option value="<?php echo $theater->getId();  ?>"><?php echo $theater->getName(); ?></option>
-                  <?php } ?>
-
-
-                  </select> 
-                </td>
-            </tr>
-            <tr>
-                <td>Fecha                   
-                  <input type="date" name ='date'></input>
-                </td>
-                <td>Turno                   
-                    <select name='time'>
-                      <option value='16:30'>16:30</option>
-                      <option value='18:30'>18:30</option>
-                      <option value='20:30'>20:30</option>
-                      <option value='22:30'>22:30</option>
-                      <option value='00:30'>00:30</option>
-                    
-                    </select>
-                </td>
-                <td>
-                  <select name='name_room'>
-                      <option value='Sala 1'>Sala 1</option>
-                      <option value='Sala 2'>Sala 2</option>
-                      <option value='Sala 3'>Sala 3</option>
-                      <option value='Sala 4'>Sala 4</option>
-                  
-                  </select>
-                </td>
-
                 <td><button type="submit" class="btn btn-success" > Agregar </button></td>
             </tr>
             </tbody>

@@ -94,7 +94,7 @@
 
         }
 
-        public function cartelera(){
+        public function viewCartelera(){
 
             $this->userController = new C_User;
             $user = $this->userController->checkSession();
@@ -103,7 +103,20 @@
             $list = $this->movieController->readAll();
             
 
-            require(VIEWS_PATH."cartelera.php");
+            require(VIEWS_PATH."viewCartelera.php");
+
+        }
+
+        public function adminCartelera(){
+
+            $this->userController = new C_User;
+            $user = $this->userController->checkSession();
+
+            $this->movieController = new C_Movie;
+            $list = $this->movieController->readAll();
+            
+
+            require(VIEWS_PATH."adminCartelera.php");
 
         }
 
@@ -112,11 +125,22 @@
             $this->userController = new C_User;
             $user = $this->userController->checkSession();
 
-            //hacer lista de cines
+            require(VIEWS_PATH."addMovie.php");
+
+        }
+
+        public function viewAddSession(){
+
+            $this->userController = new C_User;
+            $user = $this->userController->checkSession();
+
             $this->theatherController= new C_theather;
             $T_list=$this->theatherController->readAll();
 
-            require(VIEWS_PATH."addMovie.php");
+            $this->movieController = new C_Movie;
+            $M_list = $this->movieController->readAll();
+
+            require(VIEWS_PATH."addSession.php");
 
         }
         
@@ -125,34 +149,29 @@
             $this->userController = new C_User;
             $user = $this->userController->checkSession();
 
+
+
             $this->sessionController = new C_Session;
             //$S_list= $this->sessionController->readAll();    
             $S_list= $this->sessionController->readFor_theather(1);    
 
 
-           require(VIEWS_PATH."viewsession.php");
-
+           require(VIEWS_PATH."adminViewSession.php");
 
         }
 
+        public function schedules()
+        {
+            $this->userController = new C_User;
+            $user = $this->userController->checkSession();
 
+            $this->sessionController = new C_Session;
+            $S_list= $this->sessionController->readFor_theather(1); 
+            //$S_list = $this->sessionController->getSchedules_for_theather();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    }
+           require(VIEWS_PATH."viewSchedule.php");
+            
+        }
 
        
-?>
+    }
