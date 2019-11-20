@@ -9,10 +9,12 @@ class Session
     private $movie;
     private $date;
     private $time;
+    private $id_movie;
     private $tickets;
 
 
-    public function __construct($theather='',$room='',$movie='',$date='',$time='',$id_session='',$tickets=''){
+
+    public function __construct($theather='',$room='',$movie='',$date='',$time='',$id_movie='',$id_session='',$tickets=''){
         
         $this->id_session=$id_session;
         $this->theather=$theather;
@@ -20,6 +22,7 @@ class Session
         $this->movie=$movie;
         $this->date=$date;
         $this->time=$time;
+        $this->$id_movie=$id_movie;
         $this->tickets=$tickets;
     
     }
@@ -54,6 +57,11 @@ class Session
     public function setTime($time)
     {
         $this->time=$time;
+    }
+
+    public function setId_movie($id_movie){
+        
+        $this->id_movie=$id_movie;
     }
 
     public function setTickets($tickets)
@@ -96,6 +104,11 @@ class Session
     public function getTickets()
     {
         return $this->tickets;
+    }
+
+    public function getId_movie(){
+        
+        return $this->id_movie;
     }
 
 

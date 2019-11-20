@@ -1,27 +1,47 @@
-<?php 
-include("nav-bar-user.php");?>
+<?php
+include("nav-bar-user.php"); ?>
 
 <!-- Page top section -->
 
 
 <section class="page-top-section set-bg" data-setbg="img/page-top-bg/1.jpg" style="background: #330d38;">
-		<div class="page-info">
-			<h2>Lista de Sessiones</h2>
-			<div class="site-breadcrumb">
-				<a href="">Administrar</a>  /
-				<span>Sessiones</span>
-			</div>
-		</div>
-	</section>
-    <!-- Page top end-->
+  <div class="page-info">
+    <h2>Lista de Sessiones</h2>
+    <div class="site-breadcrumb">
+      <a href="">Administrar</a> /
+      <span>Sessiones</span>
+    </div>
+  </div>
+</section>
+<!-- Page top end-->
 
-<form action ="<?php echo FRONT_ROOT."Session/delete"?>" method="POST">
-  <div class="wrapper row4" style="background: #330d38;" >
-    <!-- main body -->
-    <main class="hoc container clear" > 
-      <div class="content" style="background: #ffffff;"> 
-        <div class="scrollable">
-          <table style="text-align:center;" class="table table-responsive table-bordered">
+
+<div class="wrapper row4" style="background: #330d38;">
+  <!-- main body -->
+  <main class="hoc container clear" >
+    <div class="content" style="background: #ffffff;">
+      <!-- Filtro por cine -->
+
+      <div style="background: #ffffff;">
+        
+        <form action="<?php echo FRONT_ROOT . "view/viewList_sessions" ?>" method="GET">
+          <div class="form-group">
+            <select name="id_theather" class="custom-select" required>
+              <option value=''>Seleccione un cine</option>
+              <?php foreach ($T_list as $key => $theather) { ?>
+                <option value="<?php echo $theather->getId();  ?>"><?php echo $theather->getName() ?></option>
+              <?php } ?>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+
+      </div>
+
+      <!-- Filtro por cine end -->
+      <form action="<?php echo FRONT_ROOT . "Session/delete" ?>" method="POST" >
+        <div class="scrollable"  >
+          <table style="text-align:center;" class="table table-responsive table-bordered" style="background: #ffffff;">
             <thead class="table-active">
               <tr>
                 <th style="width: 10%;">ID</th>
@@ -35,27 +55,28 @@ include("nav-bar-user.php");?>
             </thead>
             <tbody>
               <?php
-                foreach($S_list as $list)
-                {
+              if (!empty($S_list)) {
+                foreach ($S_list as $list) {
                   ?>
-                    <tr>
-                      <td><?php echo $list->getId() ?></td>
-                      <td><?php echo $list->getTheather() ?></td>
-                      <td><?php echo $list->getMovie()?></td>
-                      <td><?php echo $list->getRoom()?></td>
-                      <td><?php echo $list->getDate()?></td>
-                      <td><?php echo $list->getTime()?></td>
-                      <td>
-                        <button type="submit" name="id" class="btn btn-danger" value="<?php echo $list->getId() ?>"> Elminar </button>
-                      </td>
-                    </tr>
-                  <?php
+                  <tr>
+                    <td><?php echo $list->getId() ?></td>
+                    <td><?php echo $list->getTheather() ?></td>
+                    <td><?php echo $list->getMovie() ?></td>
+                    <td><?php echo $list->getRoom() ?></td>
+                    <td><?php echo $list->getDate() ?></td>
+                    <td><?php echo $list->getTime() ?></td>
+                    <td>
+                      <button type="submit" name="id" class="btn btn-danger" value="<?php echo $list->getId() ?>"> Elminar </button>
+                    </td>
+                  </tr>
+              <?php
                 }
-              ?>                          
+              }
+              ?>
             </tbody>
           </table>
         </div>
-      </div>
-    </main>
-  </div>
-</form>
+    </div>
+  </main>
+</div>
+</form >

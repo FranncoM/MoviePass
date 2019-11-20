@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="zxx" style="background: #330d38;">
 <head>
 	<title>MoviePass</title>
 	<meta charset="UTF-8">
@@ -31,11 +31,11 @@
  
 </head>
 
-<body>
+<body >
 
-	<!-- Page Preloder 
-	<div id="preloder">
+	<!-- Page Preloder  
+	<div id="preloder" >
 		<div class="loader"></div>
-	</div> -->
+	</div>-->
 
 	

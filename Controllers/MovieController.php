@@ -64,10 +64,8 @@ class MovieController
     }
 
 
-    public function readCategory($cat)
+    public function readForCategory($cat)
     {
-        //DEVUELVE EL user CON ESE EMAIL EN CASO DE EXSISTIR
-
 
         return $list = $this->dao->readForCategory($cat);
 
