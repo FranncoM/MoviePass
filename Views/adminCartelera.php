@@ -1,5 +1,10 @@
 <?php
-include("nav-bar-admin.php");
+if ($user) {
+  if ($user->getLevel() == 0) {
+    include("nav-bar-admin.php");
+  } else include("nav-bar-user.php");
+} else
+  include('nav-bar.php');
 ?>
 
 <!-- Page top section -->

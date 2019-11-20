@@ -85,9 +85,6 @@ class MovieController
 
     }
 
-
-
-
     public function delete($id)
     {
         
@@ -99,6 +96,3 @@ class MovieController
     }
 
 }
-
-
-?>

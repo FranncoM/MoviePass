@@ -74,9 +74,6 @@ class TheatherController
 
     }
 
-
-
-
     public function delete($id)
     {
         
@@ -88,6 +85,3 @@ class TheatherController
     }
 
 }
-
-
-?>

@@ -56,7 +56,6 @@
 
         }
 
-
         private static function getMethodRequest(){   
 
             return $_SERVER["REQUEST_METHOD"];
@@ -77,4 +76,3 @@
             return $this->parameters;
         }
     }
-?>

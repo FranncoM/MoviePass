@@ -1,192 +1,188 @@
-<?php namespace DAO;
+<?php
 
-    use Models\Movie as M_Movie;
-    use DAO\connection as Connection;
-    use PDOException;
-         /**
-          *
-          */
-         class DAOMovie
-         {
-              private $connection;
+namespace DAO;
 
-              function __construct() {
+use Models\Movie as M_Movie;
+use DAO\connection as Connection;
+use PDOException;
 
-               $this->connection = null;
-              }
+/**
+ *
+ */
+class DAOMovie
+{
+    private $connection;
 
-              /**
-               *
-               */
-              public function create($_movie) {
+    function __construct()
+    {
 
-                   // Guardo como string la consulta sql utilizando como values, marcadores de parámetros con nombre (:name) o signos de interrogación (?) por los cuales los valores reales serán sustituidos cuando la sentencia sea ejecutada
-                   $sql = "INSERT INTO movies (title,category,age,id_tmbd) VALUES (:title,:category, :age, :id_tmbd)";
+        $this->connection = null;
+    }
 
-                   $parameters['title'] = $_movie->getTitle();
-                   $parameters['category'] = $_movie->getCategory();
-                   $parameters['age'] = $_movie->getAge();
-                   $parameters['id_tmbd'] = $_movie->getId_tmbd();
-                   
-                   try {
-                         // creo la instancia connection
-                         $this->connection = Connection::getInstance();
-                         // Ejecuto la sentencia.
-                    return $this->connection->ExecuteNonQuery($sql, $parameters);
+    /**
+     *
+     */
+    public function create($_movie)
+    {
 
-                } catch(PDOException $ex) {
-                       throw $ex;
-                  }
-              }
-              
-              
-              public function read($_id) {
-               
-                   $sql = "SELECT * FROM movies where id = :id";
+        // Guardo como string la consulta sql utilizando como values, marcadores de parámetros con nombre (:name) o signos de interrogación (?) por los cuales los valores reales serán sustituidos cuando la sentencia sea ejecutada
+        $sql = "INSERT INTO movies (title,category,age,id_tmbd) VALUES (:title,:category, :age, :id_tmbd)";
 
+        $parameters['title'] = $_movie->getTitle();
+        $parameters['category'] = $_movie->getCategory();
+        $parameters['age'] = $_movie->getAge();
+        $parameters['id_tmbd'] = $_movie->getId_tmbd();
 
-                   $parameters['id'] = $_id;
-
-                   try {
-                        $this->connection = Connection::getInstance();
-
-                        $resultSet = $this->connection->execute($sql, $parameters);
-                        
-                   } catch(Exception $ex) {
-                       throw $ex;
-                   }
-                   if(!empty($resultSet)){
-                        
-                    return $this->mapear($resultSet);
-                   }
-                       
-                   else
-                        return false;
-              }
+        try {
+            // creo la instancia connection
+            $this->connection = Connection::getInstance();
+            // Ejecuto la sentencia.
+            return $this->connection->ExecuteNonQuery($sql, $parameters);
+        } catch (PDOException $ex) {
+            throw $ex;
+        }
+    }
 
 
-              public function readForCategory($category) {
-        
-                $sql = "SELECT * FROM movies
+    public function read($_id)
+    {
+
+        $sql = "SELECT * FROM movies where id = :id";
+
+
+        $parameters['id'] = $_id;
+
+        try {
+            $this->connection = Connection::getInstance();
+
+            $resultSet = $this->connection->execute($sql, $parameters);
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+        if (!empty($resultSet)) {
+
+            return $this->mapear($resultSet);
+        } else
+            return false;
+    }
+
+
+    public function readForCategory($category)
+    {
+
+        $sql = "SELECT * FROM movies
                  where category = :category";
-    
-                $parameters['category'] = $category;
-    
-                try {
-                    $this->connection = Connection::getInstance();
-    
-                    $resultSet = $this->connection->execute($sql, $parameters);
-                    
-                } catch(Exception $ex) {
-                    throw $ex;
-                }
-                if(!empty($resultSet)){
-                    
-                return $this->mapear($resultSet);
-                }
-                    
-                else
-                    return false;
-            }
 
-            public function readForName($title) {
-               
-                $sql = "SELECT * FROM movies where title LIKE :title limit 1";
+        $parameters['category'] = $category;
 
-                $parameters['title'] =$title;
-               
+        try {
+            $this->connection = Connection::getInstance();
 
-                try {
-                     $this->connection = Connection::getInstance();
+            $resultSet = $this->connection->execute($sql, $parameters);
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+        if (!empty($resultSet)) {
 
-                     $resultSet = $this->connection->execute($sql, $parameters);
-                                        
-                     
-                } catch(Exception $ex) {
-                    throw $ex;
-                }
-                if(!empty($resultSet)){
-                     
-                 return $this->mapear($resultSet);
-                }
-                    
-                else
-                     return false;
-           }
-              
+            return $this->mapear($resultSet);
+        } else
+            return false;
+    }
 
-              public function readAll() {
-                   $sql = "SELECT * FROM movies";
+    public function readForName($title)
+    {
 
-                   try {
-                        $this->connection = Connection::getInstance();
+        $sql = "SELECT * FROM movies where title LIKE :title limit 1";
 
-                        $resultSet = $this->connection->execute($sql);
+        $parameters['title'] = $title;
 
-                        
-                    } catch(Exception $ex) {
 
-                       throw $ex;
-                    }
+        try {
+            $this->connection = Connection::getInstance();
 
-                   if(!empty($resultSet))
-                        return $this->mapear($resultSet); 
-                   else
-                        return false;
+            $resultSet = $this->connection->execute($sql, $parameters);
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+        if (!empty($resultSet)) {
 
-              }
-              
+            return $this->mapear($resultSet);
+        } else
+            return false;
+    }
 
-              public function edit($_movie) {
 
-                   $sql = "UPDATE movies SET title = :title, category = :category, age = :age, id_tmbd = :id_tmbd";
+    public function readAll()
+    {
+        $sql = "SELECT * FROM movies";
 
-                   $parameters['title'] = $_movie->getTitle();
-                   $parameters['category'] = $_movie->getCategory();
-                   $parameters['age'] = $_movie->getAge();
-                   $parameters['id_tmdb'] = $_movie->getId_tmbd();
-    
-                   try {
-                        // creo la instancia connection
-                     $this->connection = Connection::getInstance();
-                    // Ejecuto la sentencia.
-                    return $this->connection->ExecuteNonQuery($sql, $parameters);
-                } catch(\PDOException $ex) {
-                       throw $ex;
-                  }
-              }
-              
-              
-              public function delete($_id) {
+        try {
+            $this->connection = Connection::getInstance();
 
-                   $sql = "DELETE FROM movies WHERE id = :id";
-                   $parameters['id'] = $_id;
+            $resultSet = $this->connection->execute($sql);
+        } catch (Exception $ex) {
 
-                   try {
-                         
-                         $this->connection = Connection::getInstance();
-                         return $this->connection->ExecuteNonQuery($sql, $parameters);
+            throw $ex;
+        }
 
-                   } catch(PDOException $Exception) {
+        if (!empty($resultSet))
+            return $this->mapear($resultSet);
+        else
+            return false;
+    }
 
-                    throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
 
-                }
-              }
+    public function edit($_movie)
+    {
 
-          /**
-            * Transforma el listado de peliculas en
-            * objetos de la clase Movie
-            */
-            protected function mapear($value) {
+        $sql = "UPDATE movies SET title = :title, category = :category, age = :age, id_tmbd = :id_tmbd";
 
-                $value = is_array($value) ? $value : [];
+        $parameters['title'] = $_movie->getTitle();
+        $parameters['category'] = $_movie->getCategory();
+        $parameters['age'] = $_movie->getAge();
+        $parameters['id_tmdb'] = $_movie->getId_tmbd();
 
-                $resp = array_map(function($p){
-                    
-                    return new M_Movie($p['id'], $p['title'], $p['category'], $p['age'],$p['id_tmbd']);  
-                }, $value);
-                    
-                   return count($resp) > 1 ? $resp : $resp['0'];
-            }
-         }
+        try {
+            // creo la instancia connection
+            $this->connection = Connection::getInstance();
+            // Ejecuto la sentencia.
+            return $this->connection->ExecuteNonQuery($sql, $parameters);
+        } catch (\PDOException $ex) {
+            throw $ex;
+        }
+    }
+
+
+    public function delete($_id)
+    {
+
+        $sql = "DELETE FROM movies WHERE id = :id";
+        $parameters['id'] = $_id;
+
+        try {
+
+            $this->connection = Connection::getInstance();
+            return $this->connection->ExecuteNonQuery($sql, $parameters);
+        } catch (PDOException $Exception) {
+
+            throw new MyDatabaseException($Exception->getMessage(), $Exception->getCode());
+        }
+    }
+
+    /**
+     * Transforma el listado de peliculas en
+     * objetos de la clase Movie
+     */
+    protected function mapear($value)
+    {
+
+        $value = is_array($value) ? $value : [];
+
+        $resp = array_map(function ($p) {
+
+            return new M_Movie($p['id'], $p['title'], $p['category'], $p['age'], $p['id_tmbd']);
+        }, $value);
+
+        return count($resp) > 1 ? $resp : $resp['0'];
+    }
+}

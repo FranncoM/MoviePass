@@ -7,13 +7,12 @@ use Controllers\UserController as C_User;
 use Controllers\MovieController as C_Movie;
 use Controllers\TheatherController as C_theather;
 use Controllers\SessionController as C_Session;
+use Controllers\PurchaseController as C_Purchase;
 
 
 use models\User as M_User;
 use models\Movie as M_Movie;
 
-/*$userController = new C_User;
-    $user = $userController->checkSession();*/
 
 class ViewController
 {
@@ -22,6 +21,7 @@ class ViewController
     private $movieController;
     private $theatherController;
     private $sessionController;
+    private $purchaseController;
 
     public function __construct()
     { }
@@ -81,8 +81,8 @@ class ViewController
             $this->movieController = new C_Movie;
             $M_list = $this->movieController->readForCategory($category);
         } elseif (isset($_GET['date'])) {
-            $date = $_GET['date'];
 
+            $date = $_GET['date'];
             $this->sessionController = new C_Session;
             $S_list = $this->sessionController->readForDate($date);
         } else {
@@ -119,17 +119,43 @@ class ViewController
         require(VIEWS_PATH . "adminViewSession.php");
     }
 
-    public function movieschedules()
+    public function movieschedules($id_movie)
     {
         $this->userController = new C_User;
         $user = $this->userController->checkSession();
 
+        $this->theatherController = new C_theather;
+        $T_list = $this->theatherController->readAll();
+
+        $this->movieController = new C_Movie;
+        $movie = $this->movieController->read($id_movie);
+
+        $this->theatherController = new C_theather;
+        $T_list = $this->theatherController->readAll();
+
+
+
+
         $this->sessionController = new C_Session;
-        $S_list = $this->sessionController->readFor_theather(1);
-        //$S_list = $this->sessionController->getSchedules_for_theather();
+        $S_list = $this->sessionController->readForMovie($id_movie);
+
 
         require(VIEWS_PATH . "viewSchedule.php");
     }
+
+    public function buy($id_session)
+    {
+        $this->userController = new C_User;
+        $user = $this->userController->checkSession();
+
+        $this->purchaseController = new C_Purchase;
+        $purchase = $this->purchaseController->readForSession($id_session);
+
+
+        require(VIEWS_PATH . "viewPurchase.php");
+    }
+
+
 
     /**Metodos Administrador */
 
@@ -164,7 +190,6 @@ class ViewController
         $this->userController = new C_User;
         $user = $this->userController->checkSession();
 
-
         if (isset($_GET["category"])) {
 
             $category = $_GET["category"];
@@ -192,7 +217,6 @@ class ViewController
         require(VIEWS_PATH . "userlist.php"); //cambiar por pagina de admin para ver a todos los usuarios
 
     }
-
 
     public function viewsAdminSettings()            //  por definir
     {

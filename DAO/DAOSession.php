@@ -136,13 +136,13 @@ class DAOSession
           $sql = "SELECT rm.id_rm, t.name AS theather , r.name AS room, m.title AS film, rm.date, rm.time, m.id as id_movie, r.tickets
           FROM room_x_movie rm INNER JOIN  rooms r ON rm.id_room = r.id_room INNER JOIN theathers t ON t.id_theather = r.id_theather INNER JOIN movies m ON rm.id_movie = m.id
            where rm.date =:date group by m.title;";
-          
+
           $parameters['date'] = $date;
 
           try {
                $this->connection = Connection::getInstance();
 
-               $resultSet = $this->connection->execute($sql,$parameters);
+               $resultSet = $this->connection->execute($sql, $parameters);
           } catch (Exception $ex) {
 
                throw $ex;
@@ -159,7 +159,7 @@ class DAOSession
      {
           $sql = "SELECT rm.id_rm, t.name AS theather , r.name AS room, m.title AS film, rm.date, rm.time,m.id as id_movie, r.tickets
                FROM room_x_movie rm INNER JOIN  rooms r ON rm.id_room = r.id_room INNER JOIN theathers t ON t.id_theather = r.id_theather INNER JOIN movies m ON rm.id_movie = m.id
-                where t.id_theather = :theather;";
+                where t.id_theather = :theather order by rm.date, rm.time;";
 
           $parameters['theather'] = $theather;
 
@@ -182,7 +182,7 @@ class DAOSession
      {
           $sql = "SELECT rm.id_rm, t.name AS theather , r.name AS room, m.title AS film, rm.date, rm.time,m.id as id_movie, r.tickets
                FROM room_x_movie rm INNER JOIN  rooms r ON rm.id_room = r.id_room INNER JOIN theathers t ON t.id_theather = r.id_theather INNER JOIN movies m ON rm.id_movie = m.id
-                where t.id_theather = :theather;";
+                where t.id_theather = :theather order by rm.date, rm.time ;";
 
           $parameters['theather'] = $theather;
 
@@ -201,8 +201,32 @@ class DAOSession
                return false;
      }
 
+
+     public function readForMovie($id_movie)
+     {
+          $sql = "SELECT rm.id_rm, t.name AS theather , r.name AS room, m.title AS film, rm.date, rm.time, m.id AS id_movie, r.tickets
+               FROM room_x_movie rm INNER JOIN  rooms r ON rm.id_room = r.id_room INNER JOIN theathers t ON t.id_theather = r.id_theather INNER JOIN movies m ON rm.id_movie = m.id
+                where m.id = :id_movie order by rm.date, rm.time;";
+
+          $parameters['id_movie'] = $id_movie;
+
+          try {
+               $this->connection = Connection::getInstance();
+
+               $resultSet = $this->connection->execute($sql, $parameters);
+          } catch (Exception $ex) {
+
+               throw $ex;
+          }
+
+          if (!empty($resultSet))
+               return $this->mapear($resultSet);
+          else
+               return false;
+     }
+
      public function readForCateghory($category)
-     { 
+     {
 
           $sql = "SELECT m.title as title,rm.date as date ,r.tickets as tickets,m.id as id_movie
           from room_x_movie rm inner join rooms r  ON rm.id_room = r.id_room INNER JOIN theathers t ON t.id_theather = r.id_theather INNER JOIN movies m 
@@ -280,5 +304,4 @@ class DAOSession
 
           return count($resp) > 1 ? $resp : $resp['0'];
      }
-
 }

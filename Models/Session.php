@@ -22,7 +22,7 @@ class Session
         $this->movie=$movie;
         $this->date=$date;
         $this->time=$time;
-        $this->$id_movie=$id_movie;
+        $this->id_movie=$id_movie;
         $this->tickets=$tickets;
     
     }
@@ -113,5 +113,3 @@ class Session
 
 
 }
-
-?>

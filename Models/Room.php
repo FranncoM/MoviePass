@@ -1,4 +1,6 @@
-<?php namespace Models;
+<?php
+
+namespace Models;
 
 
 class Room
@@ -9,13 +11,13 @@ class Room
     private $tickets;
 
 
-    public function __construct($theather='',$name='',$tickets='',$id_room=''){
-        
-        $this->id_room=$id_room;
-        $this->theather=$theather;
-        $this->name=$name;
-        $this->tickets=$tickets;
-    
+    public function __construct($theather = '', $name = '', $tickets = '', $id_room = '')
+    {
+
+        $this->id_room = $id_room;
+        $this->theather = $theather;
+        $this->name = $name;
+        $this->tickets = $tickets;
     }
 
     ////////////** SETTERS *//////////////////
@@ -25,19 +27,20 @@ class Room
         $this->id_room->$id_room;
     }
 
-    public function setTheather($theather){
+    public function setTheather($theather)
+    {
 
-        $this->theather=$theather;
+        $this->theather = $theather;
     }
 
     public function setName($name)
     {
-        $this->name=$name;
+        $this->name = $name;
     }
 
     public function setTickets($tickets)
     {
-        $this->tickets=$tickets;
+        $this->tickets = $tickets;
     }
 
     ////////////** GETTERS *//////////////////
@@ -47,7 +50,8 @@ class Room
         return $this->id_room;
     }
 
-    public function getTheather(){
+    public function getTheather()
+    {
 
         return $this->theather;
     }
@@ -61,6 +65,4 @@ class Room
     {
         return $this->tickets;
     }
-
-
 }

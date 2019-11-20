@@ -84,5 +84,3 @@ class Movie
         return  $this->id_tmbd;
     }
 }
-
-?>

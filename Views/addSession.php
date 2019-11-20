@@ -34,7 +34,7 @@ include("nav-bar-user.php");?>
             <tbody>
             <tr>
                 <td>
-                    <select name='id_movie'>
+                    <select name='id_movie' require>
                         <option>Seleccionar una Pelicula</option>
 
                          <?php foreach ($M_list as $key => $movie) { ?>
@@ -43,7 +43,7 @@ include("nav-bar-user.php");?>
                     </select> 
                 </td>
                 <td>
-                  <select name='id_theather'>
+                  <select name='id_theather' require>
                     <option>Seleccionar un cine</option>
 
                     <?php foreach ($T_list as $key => $theater) { ?>
@@ -54,17 +54,17 @@ include("nav-bar-user.php");?>
                   </select> 
                 </td>
                 <td>Fecha                   
-                  <input type="date" name ='date'></input>
+                  <input type="date" name ='date' require></input>
                 </td>
                 <td>Turno                   
-                    <select name='time'>
+                    <!--<select name='time' require>
                       <option value='16:30'>16:30</option>
                       <option value='18:30'>18:30</option>
                       <option value='20:30'>20:30</option>
                       <option value='22:30'>22:30</option>
                       <option value='00:30'>00:30</option>
                     
-                    </select>
+                    </select>-->require<input type="time" name="time" min="00:00" max="16:00" required>
                 </td>
                 <td>
                   <select name='name_room'>

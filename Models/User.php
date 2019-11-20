@@ -27,7 +27,7 @@ class User
         $this->level = $level;
     }
 
-        
+
 
     ////////////** SETTERS *//////////////////
 

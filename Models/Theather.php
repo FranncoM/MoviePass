@@ -84,4 +84,3 @@ class Theather
         return $this->fullCapacity;
     }
 }
-?>

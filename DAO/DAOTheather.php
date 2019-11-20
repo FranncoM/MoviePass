@@ -144,5 +144,3 @@
                    return count($resp) > 1 ? $resp : $resp['0'];
             }
          }
-
-?>

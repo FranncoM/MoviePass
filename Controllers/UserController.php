@@ -145,4 +145,3 @@ class UserController
         $this->viewController->home();
     }
 }
-?>

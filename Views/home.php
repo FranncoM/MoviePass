@@ -1,5 +1,4 @@
 <?php
-//include_once("header.php");
 if ($user) {
 
 	if ($user->getLevel() == 0) {

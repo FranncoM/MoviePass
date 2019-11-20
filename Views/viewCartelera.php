@@ -52,14 +52,14 @@ if ($user) {
       <!-- Filtro end -->
 
       <!-- Filtro por fecha -->
-      
+
       <div style="background: #ffffff;">
         <form action="<?php echo FRONT_ROOT . "view/viewCartelera" ?>" method="GET">
           <div class="form-group">
             <select name="date" class="custom-select" required>
-            <option value=""> Selleciones una fecha</option>
+              <option value=""> Selleciones una fecha</option>
               <?php foreach ($SC_list as $key => $session) { ?>
-                
+
                 <option value="<?php echo $session->getDate();  ?>"><?php echo $session->getDate() ?></option>
               <?php } ?>
             </select>
@@ -72,14 +72,14 @@ if ($user) {
       <!-- Filtro end -->
 
 
-      <form action="<?php echo FRONT_ROOT . "" ?>" method="POST">
+      <form action="<?php echo FRONT_ROOT . "view/movieschedules" ?>" method="POST">
         <div class="scrollable">
           <table style="text-align:center;" class="table table-responsive table-bordered">
             <thead class="table-active">
               <tr>
-                <th style="width: 15%;">Titulo</th>
-                <th style="width: 15%;">Portada</th>
-                <th style="width: 10%;">Comprar</th>
+                <th style="width: 5%;">Titulo</th>
+                <th style="width: 5%;">Portada</th>
+                <th style="width: 5%;">Comprar</th>
 
               </tr>
             </thead>
@@ -93,22 +93,23 @@ if ($user) {
                     <td></td>
 
                     <td>
-                      <button type="submit" name="id" class="btn btn-success" value="<?php echo $list->getId() ?>"> Comprar </button>
+                      <button type="submit" name="id" class="btn btn-primary" value="<?php echo $list->getId() ?>"> Info </button>
                     </td>
                   </tr>
                 <?php
                   }
                 } elseif (!empty($S_list)) {
-                  
+
                   foreach ($S_list as $list) {
                     ?>
-                    
+
                   <tr>
                     <td><?php echo $list->getMovie() ?></td>
                     <td></td>
 
                     <td>
-                      <button type="submit" name="id" class="btn btn-success" value="<?php echo $list->getId_movie() ?>"> Comprar </button>
+
+                      <button type="submit" name="id" class="btn btn-primary" value="<?php echo $list->getId_movie() ?>"> Info </button>
                     </td>
                   </tr>
               <?php

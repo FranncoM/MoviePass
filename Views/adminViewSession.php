@@ -1,5 +1,11 @@
 <?php
-include("nav-bar-user.php"); ?>
+if ($user) {
+  if ($user->getLevel() == 0) {
+    include("nav-bar-admin.php");
+  } else include("nav-bar-user.php");
+} else
+  include('nav-bar.php');
+?>
 
 <!-- Page top section -->
 
@@ -18,12 +24,12 @@ include("nav-bar-user.php"); ?>
 
 <div class="wrapper row4" style="background: #330d38;">
   <!-- main body -->
-  <main class="hoc container clear" >
+  <main class="hoc container clear">
     <div class="content" style="background: #ffffff;">
       <!-- Filtro por cine -->
 
       <div style="background: #ffffff;">
-        
+
         <form action="<?php echo FRONT_ROOT . "view/viewList_sessions" ?>" method="GET">
           <div class="form-group">
             <select name="id_theather" class="custom-select" required>
@@ -39,8 +45,8 @@ include("nav-bar-user.php"); ?>
       </div>
 
       <!-- Filtro por cine end -->
-      <form action="<?php echo FRONT_ROOT . "Session/delete" ?>" method="POST" >
-        <div class="scrollable"  >
+      <form action="<?php echo FRONT_ROOT . "Session/delete" ?>" method="POST">
+        <div class="scrollable">
           <table style="text-align:center;" class="table table-responsive table-bordered" style="background: #ffffff;">
             <thead class="table-active">
               <tr>
@@ -79,4 +85,4 @@ include("nav-bar-user.php"); ?>
     </div>
   </main>
 </div>
-</form >
+</form>
