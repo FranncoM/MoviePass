@@ -11,6 +11,7 @@ class Session
     private $time;
     private $id_movie;
     private $tickets;
+    
 
 
 

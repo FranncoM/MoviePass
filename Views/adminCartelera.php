@@ -1,11 +1,13 @@
 <?php
 if ($user) {
+
   if ($user->getLevel() == 0) {
     include("nav-bar-admin.php");
   } else include("nav-bar-user.php");
 } else
   include('nav-bar.php');
 ?>
+
 
 <!-- Page top section -->
 
@@ -33,7 +35,7 @@ if ($user) {
 
         <form action="<?php echo FRONT_ROOT . "view/adminCartelera" ?>" method="GET">
           <div class="form-group">
-            <select name="category" class="custom-select" required>
+            <select style="width:350px" name="category" class="custom-select" required>
               <option value=''>Seleccione una categoria</option>
               <option value='Accion'>Accion</option>
               <option value='Thriller'>Terror</option>
@@ -43,8 +45,9 @@ if ($user) {
               <option value='Musical'>Musical</option>
 
             </select>
+            <button type="submit" class="btn btn-primary">Buscar</button>
           </div>
-          <button type="submit" class="btn btn-primary">Buscar</button>
+
         </form>
 
       </div>
@@ -55,11 +58,10 @@ if ($user) {
           <table style="text-align:center;" class="table table-responsive table-bordered">
             <thead class="table-active">
               <tr>
-                <th style="width: 10%;">ID</th>
-                <th style="width: 15%;">Titulo</th>
-                <th style="width: 30%;">Categoria</th>
-                <th style="width: 30%;">Edad</th>
-                <th style="width: 15%;">TMDB</th>
+                <th style="width: 5%;">ID</th>
+                <th style="width: 25%;">Titulo</th>
+                <th style="width: 20%;">Categoria</th>
+                <th style="width: 5%;">Edad</th>
                 <th style="width: 10%;">Eliminar</th>
               </tr>
             </thead>
@@ -70,9 +72,8 @@ if ($user) {
                   <tr>
                     <td><?php echo $list->getId() ?></td>
                     <td><?php echo $list->getTitle() ?></td>
-                    <td><?php echo $list->getCategory() ?></td>
+                    <td><?php echo $list->getGenre() ?></td>
                     <td><?php echo $list->getAge() ?></td>
-                    <td><?php echo $list->getId_tmbd() ?></td>
                     <td>
                       <button type="submit" name="id" class="btn btn-danger" value="<?php echo $list->getId() ?>"> Elminar </button>
                     </td>

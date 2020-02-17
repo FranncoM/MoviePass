@@ -1,4 +1,6 @@
-<?php namespace Models;
+<?php
+
+namespace Models;
 
 
 class Purchase
@@ -17,28 +19,28 @@ class Purchase
 
 
 
-    public function __construct($id_user='',$name_theather='',$id_room='',$movie='',$date='',$time='',$id_movie='',$id_purchase='',$id_rm='',$price='',$stock=''){
-        
+    public function __construct($id_user = '', $name_theather = '', $id_room = '', $movie = '', $date = '', $time = '', $id_movie = '', $id_purchase = '', $id_rm = '', $price = '', $stock = '')
+    {
+
         $this->id_user = $id_user;
-        $this->id_purchase=$id_purchase;
-        $this->id_theather=$name_theather;
-        $this->id_room=$id_room;
-        $this->movie=$movie;
-        $this->date=$date;
-        $this->time=$time;
-        $this->id_movie=$id_movie;
-        $this->id_purchase=$id_purchase;
-        $this->id_rm=$id_rm;
-        $this->price=$price;
-        $this->stock=$stock;
-    
+        $this->id_purchase = $id_purchase;
+        $this->name_theather = $name_theather;
+        $this->id_room = $id_room;
+        $this->movie = $movie;
+        $this->date = $date;
+        $this->time = $time;
+        $this->id_movie = $id_movie;
+        $this->id_purchase = $id_purchase;
+        $this->id_rm = $id_rm;
+        $this->price = $price;
+        $this->stock = $stock;
     }
 
     ////////////** SETTERS *//////////////////
 
     public function setId($id_purchase)
     {
-        $this->id_purchase=$id_purchase;
+        $this->id_purchase = $id_purchase;
     }
 
     public function setId_user($id_user)
@@ -46,51 +48,53 @@ class Purchase
         $this->id_user = $id_user;
     }
 
-    public function setName_theather($name_theather){
+    public function setName_theather($name_theather)
+    {
 
-        $this->id_theather=$name_theather;
+        $this->id_theather = $name_theather;
     }
 
     public function setId_room($id_room)
     {
-        $this->id_room=$id_room;
+        $this->id_room = $id_room;
     }
 
     public function setDate($date)
     {
-        $this->date=$date;
+        $this->date = $date;
     }
 
     public function setTime($time)
     {
-        $this->time=$time;
+        $this->time = $time;
     }
 
-    public function setId_movie($id_movie){
-        
-        $this->id_movie=$id_movie;
+    public function setId_movie($id_movie)
+    {
+
+        $this->id_movie = $id_movie;
     }
 
     public function setPrice($price)
     {
-        $this->price=$price;
+        $this->price = $price;
     }
 
-    
+
     public function setId_purchase($id_purchase)
     {
-         $this->id_purchase=$id_purchase;
+        $this->id_purchase = $id_purchase;
     }
 
-    
+
     public function setId_rm($id_rm)
     {
-         $this->id_rm=$id_rm;
+        $this->id_rm = $id_rm;
     }
 
     public function setStock($stock)
     {
-        $this->stock=$stock;
+        $this->stock = $stock;
     }
 
     ////////////** GETTERS *//////////////////
@@ -106,17 +110,19 @@ class Purchase
     }
 
 
-    public function getName_theather(){
+    public function getName_theather()
+    {
 
-        return $this->id_theather;
+        return $this->name_theather;
     }
 
     public function getId_room()
     {
         return $this->id_room;
     }
-    public function getMovie(){
-        
+    public function getMovie()
+    {
+
         return $this->movie;
     }
 
@@ -135,8 +141,9 @@ class Purchase
         return $this->price;
     }
 
-    public function getId_movie(){
-        
+    public function getId_movie()
+    {
+
         return $this->id_movie;
     }
 
@@ -145,7 +152,7 @@ class Purchase
         return $this->id_purchase;
     }
 
-    
+
     public function getId_rm()
     {
         return $this->id_rm;

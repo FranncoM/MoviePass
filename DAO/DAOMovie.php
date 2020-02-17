@@ -11,6 +11,7 @@ use PDOException;
  */
 class DAOMovie
 {
+
     private $connection;
 
     function __construct()
@@ -26,12 +27,14 @@ class DAOMovie
     {
 
         // Guardo como string la consulta sql utilizando como values, marcadores de parámetros con nombre (:name) o signos de interrogación (?) por los cuales los valores reales serán sustituidos cuando la sentencia sea ejecutada
-        $sql = "INSERT INTO movies (title,category,age,id_tmbd) VALUES (:title,:category, :age, :id_tmbd)";
+        $sql = "INSERT INTO movies (id_tmdb,title,genre,age,overview,poster) VALUES (:id_tmdb, :title, :genre, :age, :overview, :poster)";
 
+        $parameters['id_tmdb'] = $_movie->getId_tmdb();
         $parameters['title'] = $_movie->getTitle();
-        $parameters['category'] = $_movie->getCategory();
+        $parameters['genre'] = $_movie->getGenre();
         $parameters['age'] = $_movie->getAge();
-        $parameters['id_tmbd'] = $_movie->getId_tmbd();
+        $parameters['overview'] = $_movie->getOverview();
+        $parameters['poster'] = $_movie->getPoster();
 
         try {
             // creo la instancia connection
@@ -59,6 +62,7 @@ class DAOMovie
         } catch (Exception $ex) {
             throw $ex;
         }
+
         if (!empty($resultSet)) {
 
             return $this->mapear($resultSet);
@@ -67,13 +71,36 @@ class DAOMovie
     }
 
 
-    public function readForCategory($category)
+    public function readForGenre($genre)
     {
 
         $sql = "SELECT * FROM movies
-                 where category = :category";
+                 where genre = :genre";
 
-        $parameters['category'] = $category;
+        $parameters['genre'] = $genre;
+
+        try {
+            $this->connection = Connection::getInstance();
+
+            $resultSet = $this->connection->execute($sql, $parameters);
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+
+        if (!empty($resultSet)) {
+
+            return $this->mapear($resultSet);
+        } else
+            return false;
+    }
+
+    public function readForName($title)
+    {
+
+        $sql = "SELECT * FROM movies where title LIKE :title limit 1";
+
+        $parameters['title'] = $title;
+
 
         try {
             $this->connection = Connection::getInstance();
@@ -89,12 +116,14 @@ class DAOMovie
             return false;
     }
 
-    public function readForName($title)
+    public function readForDate($date)
     {
 
-        $sql = "SELECT * FROM movies where title LIKE :title limit 1";
+        $sql = "SELECT m.id AS id, m.title AS title, m.id_tmdb AS id_tmdb, m.age AS age, m.genre AS genre, m.overview AS overview, m.poster AS poster
+            FROM room_x_movie rm INNER JOIN  rooms r ON rm.id_room = r.id_room INNER JOIN theathers t ON t.id_theather = r.id_theather INNER JOIN movies m ON rm.id_movie = m.id
+             where rm.date = :date group by m.title;";
 
-        $parameters['title'] = $title;
+        $parameters['date'] = $date;
 
 
         try {
@@ -135,12 +164,11 @@ class DAOMovie
     public function edit($_movie)
     {
 
-        $sql = "UPDATE movies SET title = :title, category = :category, age = :age, id_tmbd = :id_tmbd";
+        $sql = "UPDATE movies SET title = :title, genre = :genre, age = :age";
 
         $parameters['title'] = $_movie->getTitle();
-        $parameters['category'] = $_movie->getCategory();
+        $parameters['genre'] = $_movie->getGenre();
         $parameters['age'] = $_movie->getAge();
-        $parameters['id_tmdb'] = $_movie->getId_tmbd();
 
         try {
             // creo la instancia connection
@@ -180,7 +208,7 @@ class DAOMovie
 
         $resp = array_map(function ($p) {
 
-            return new M_Movie($p['id'], $p['title'], $p['category'], $p['age'], $p['id_tmbd']);
+            return new M_Movie($p['id'], $p['id_tmdb'], $p['title'], $p['genre'], $p['age'], $p['overview'], $p['poster']);
         }, $value);
 
         return count($resp) > 1 ? $resp : $resp['0'];

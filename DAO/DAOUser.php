@@ -21,11 +21,10 @@
               public function create($_user) {
 
                    // Guardo como string la consulta sql utilizando como values, marcadores de parámetros con nombre (:name) o signos de interrogación (?) por los cuales los valores reales serán sustituidos cuando la sentencia sea ejecutada
-                   $sql = "INSERT INTO users (name, lastname, username, email, password, level) VALUES (:name, :lastname, :username, :email, :password, :level)";
+                   $sql = "INSERT INTO users (name, lastname, email, password, level) VALUES (:name, :lastname, :email, :password, :level)";
 
                    $parameters['name'] = $_user->getName();
                    $parameters['lastname'] = $_user->getLastName();
-                   $parameters['username'] = $_user->getUserName();
                    $parameters['email'] = $_user->getEmail();
                    $parameters['password'] = $_user->getPassword();
                    
@@ -92,29 +91,6 @@
 
               }
               
-
-              public function edit($_user) {
-
-                   $sql = "UPDATE users SET name = :name, lastname = :lastname, username = :username, email = :email, password = :password, level = :level, purchased_tickets = :purchased_tickets, date_tickets = :date_tickets";
-
-                   $parameters['name'] = $_user->getName();
-                   $parameters['lastname'] = $_user->getLastName();
-                   $parameters['username'] = $_user->getUserName();
-                   $parameters['email'] = $_user->getEmail();
-                   $parameters['password'] = $_user->getPassword();
-                   $parameters['level'] = $_user->getLevel();
-                  
-                   try {
-                        // creo la instancia connection
-                     $this->connection = Connection::getInstance();
-                    // Ejecuto la sentencia.
-                    return $this->connection->ExecuteNonQuery($sql, $parameters);
-                } catch(\PDOException $ex) {
-                       throw $ex;
-                  }
-              }
-              
-              
               public function delete($email) {
 
                    $sql = "DELETE FROM users WHERE email = :email";
@@ -144,7 +120,7 @@
 
                 $resp = array_map(function($p){
 
-                    return new M_Usuario($p['id'], $p['name'], $p['lastname'], $p['username'], $p['email'], $p['password'], $p['level']);
+                    return new M_Usuario($p['id'], $p['name'], $p['lastname'], $p['email'], $p['password'], $p['level']);
                 }, $value);
                     
                    return count($resp) > 1 ? $resp : $resp['0'];

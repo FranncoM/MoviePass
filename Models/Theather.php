@@ -78,6 +78,12 @@ class Theather
         return $this->price;
     }
 
+    public function getPrice()
+    {
+
+        return $this->price;
+    }
+
     public function getFullCapacity()
     {
 

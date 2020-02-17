@@ -2,16 +2,12 @@
 
 namespace Controllers;
 
-
 use Controllers\UserController as C_User;
 use Controllers\MovieController as C_Movie;
 use Controllers\TheatherController as C_theather;
 use Controllers\SessionController as C_Session;
 use Controllers\PurchaseController as C_Purchase;
-
-
-use models\User as M_User;
-use models\Movie as M_Movie;
+use Controllers\TicketController as C_Ticket;
 
 
 class ViewController
@@ -22,20 +18,26 @@ class ViewController
     private $theatherController;
     private $sessionController;
     private $purchaseController;
+    private $ticketController;
+
 
     public function __construct()
-    { }
-
-    public function home() // hay que poner una condicion si esta logeado o no.
     {
+    }
+
+    public function home()
+    {
+
         $this->userController = new C_User;
         $user = $this->userController->checkSession();
 
         require(VIEWS_PATH . "home.php");
     }
 
-    public function userHome() // hay que poner una condicion si esta logeado o no.
+
+    public function userHome()
     {
+
         $this->userController = new C_User;
         $user = $this->userController->checkSession();
 
@@ -43,27 +45,24 @@ class ViewController
     }
 
 
-
-
     public function login()
     {
         $this->userController = new C_User;
         $user = $this->userController->checkSession();
 
-
         require(VIEWS_PATH . 'login.php');
     }
 
+
     public function singUp()
     {
+
+
         $this->userController = new C_User;
         $user = $this->userController->checkSession();
 
         require(VIEWS_PATH . 'singup.php');
     }
-
-
-
 
 
     public function viewCartelera()
@@ -79,12 +78,12 @@ class ViewController
 
             $category = $_GET['category'];
             $this->movieController = new C_Movie;
-            $M_list = $this->movieController->readForCategory($category);
+            $M_list = $this->movieController->readForGenre($category);
         } elseif (isset($_GET['date'])) {
-
             $date = $_GET['date'];
+            $this->movieController = new C_Movie;
             $this->sessionController = new C_Session;
-            $S_list = $this->sessionController->readForDate($date);
+            $S_list = $this->movieController->readForDate($date);
         } else {
             $this->movieController = new C_Movie;
             $M_list = $this->movieController->readAll();
@@ -93,8 +92,6 @@ class ViewController
 
         require(VIEWS_PATH . "viewCartelera.php");
     }
-
-
 
 
     public function viewList_sessions()
@@ -115,8 +112,11 @@ class ViewController
             $S_list = $this->sessionController->readFor_theather($id_theather);
         }
 
-        // comparar si el user es admin o no para mostrar las sesiones.
-        require(VIEWS_PATH . "adminViewSession.php");
+        if ($user) {
+            require(VIEWS_PATH . "adminViewSession.php");
+        } else {
+            include(VIEWS_PATH . "validate-session.php");
+        }
     }
 
     public function movieschedules($id_movie)
@@ -133,12 +133,8 @@ class ViewController
         $this->theatherController = new C_theather;
         $T_list = $this->theatherController->readAll();
 
-
-
-
         $this->sessionController = new C_Session;
         $S_list = $this->sessionController->readForMovie($id_movie);
-
 
         require(VIEWS_PATH . "viewSchedule.php");
     }
@@ -152,12 +148,36 @@ class ViewController
         $purchase = $this->purchaseController->readForSession($id_session);
 
 
-        require(VIEWS_PATH . "viewPurchase.php");
+        if ($user) {
+            require(VIEWS_PATH . "viewPurchase.php");
+        } else {
+            include(VIEWS_PATH . "validate-session.php");
+        }
     }
 
 
+    public function myPurchases()
+    {
+        $this->userController = new C_User;
+        $user = $this->userController->checkSession();
+
+        $this->ticketController = new C_Ticket;
+        $T_list = $this->ticketController->readAllForUser($user->getId());
+
+        require(VIEWS_PATH . "myPurchase.php");
+    }
 
     /**Metodos Administrador */
+
+    public function viewAddUser()
+    {
+
+        $this->userController = new C_User;
+        $user = $this->userController->checkSession();
+
+        require(VIEWS_PATH . "addUser.php");
+    }
+
 
     public function viewAddMovie()
     {
@@ -167,6 +187,16 @@ class ViewController
 
         require(VIEWS_PATH . "addMovie.php");
     }
+
+    public function viewAddMovieTmdb()
+    {
+
+        $this->userController = new C_User;
+        $user = $this->userController->checkSession();
+
+        require(VIEWS_PATH . "addMovieTmdb.php");
+    }
+
 
     public function viewAddSession()
     {
@@ -195,28 +225,39 @@ class ViewController
             $category = $_GET["category"];
 
             $this->movieController = new C_Movie;
-            $M_list = $this->movieController->readForCategory($category);
+            $M_list = $this->movieController->readForGenre($category);
         } else {
             $this->movieController = new C_Movie;
             $M_list = $this->movieController->readAll();
         }
-
 
         require(VIEWS_PATH . "adminCartelera.php");
     }
 
     public function listUsers()
     {
-
-        //funcion para mostrar los datos del usuario: detalles, boletos comprados;
         $this->userController = new C_User;
         $user = $this->userController->checkSession();
 
         $list = $this->userController->readAll();
 
-        require(VIEWS_PATH . "userlist.php"); //cambiar por pagina de admin para ver a todos los usuarios
-
+        require(VIEWS_PATH . "userlist.php");
     }
+
+
+    public function listTheather()
+    {
+
+
+        $this->userController = new C_User;
+        $user = $this->userController->checkSession();
+
+        $this->theatherController = new C_Theather;
+        $T_list = $this->theatherController->readAll();
+
+        require(VIEWS_PATH . "adminTheatherList.php");
+    }
+
 
     public function viewsAdminSettings()            //  por definir
     {

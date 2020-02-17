@@ -26,7 +26,6 @@
                 <th style="width: 10%;">Privilegio</th>
                 <th style="width: 15%;">Nombre</th>
                 <th style="width: 30%;">Apellido</th>
-                <th style="width: 30%;">Usuario</th>
                 <th style="width: 15%;">Email</th>
                 <th style="width: 10%;">Eliminar</th>
               </tr>
@@ -39,10 +38,9 @@
                   <td><?php echo $user->getLevel() ?></td>
                   <td><?php echo $user->getName() ?></td>
                   <td><?php echo $user->getLastName() ?></td>
-                  <td><?php echo $user->getUserName() ?></td>
                   <td><?php echo $user->getEmail() ?></td>
                   <td>
-                    <button type="submit" name="email" class="btn btn-danger" value="<?php echo $user->getEmail() ?>"> Remove </button>
+                    <button type="submit" name="email" class="btn btn-danger" value="<?php echo $user->getEmail() ?>"> Eliminar </button>
                   </td>
                 </tr>
               <?php

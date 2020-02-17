@@ -36,12 +36,6 @@ class SessionController
 
     public function create($id_movie, $id_theather, $date, $time, $name_room)
     {
-
-        // $this->movieController->create($title,$category,$age,$id_tmbd);
-
-        // $id_movie=$this->movieController->getId_for_name($title);
-
-
         $id_room = $this->roomController->getId_for_name_theather($name_room, $id_theather);
 
 
@@ -53,6 +47,12 @@ class SessionController
         $this->viewController->viewList_sessions();
     }
 
+    public function read($id)
+    {
+        return $this->dao->read($id);
+    }
+
+
     public function readAll()
     {
         //guarda todos los user de la base de datos en la variable list
@@ -60,9 +60,9 @@ class SessionController
         $list = $this->dao->readAll_sessions();
 
 
-        if (!is_array($list) && $list != false) { // si no hay nada cargado, readall devuelve false
+        if (!is_array($list) && $list != false) { 
             $array[] = $list;
-            $list = $array; // para que devuelva un arreglo en caso de haber solo 1 objeto // esto para cuando queremos hacer foreach al listar, ya que no se puede hacer foreach sobre un objeto ni sobre un false
+            $list = $array; 
 
         } else if ($list == false) {
             $list = [];
@@ -78,9 +78,9 @@ class SessionController
         $list = $this->dao->readAll_sessionsByDate();
 
 
-        if (!is_array($list) && $list != false) { // si no hay nada cargado, readall devuelve false
+        if (!is_array($list) && $list != false) { 
             $array[] = $list;
-            $list = $array; // para que devuelva un arreglo en caso de haber solo 1 objeto // esto para cuando queremos hacer foreach al listar, ya que no se puede hacer foreach sobre un objeto ni sobre un false
+            $list = $array; 
 
         } else if ($list == false) {
             $list = [];
@@ -96,9 +96,9 @@ class SessionController
         $list = $this->dao->readSessionsByDate($date);
 
 
-        if (!is_array($list) && $list != false) { // si no hay nada cargado, readall devuelve false
+        if (!is_array($list) && $list != false) { 
             $array[] = $list;
-            $list = $array; // para que devuelva un arreglo en caso de haber solo 1 objeto // esto para cuando queremos hacer foreach al listar, ya que no se puede hacer foreach sobre un objeto ni sobre un false
+            $list = $array; 
 
         } else if ($list == false) {
             $list = [];
@@ -114,9 +114,44 @@ class SessionController
         $list = $this->dao->readForTheather($id_theather);
 
 
-        if (!is_array($list) && $list != false) { // si no hay nada cargado, readall devuelve false
+        if (!is_array($list) && $list != false) { 
             $array[] = $list;
-            $list = $array; // para que devuelva un arreglo en caso de haber solo 1 objeto // esto para cuando queremos hacer foreach al listar, ya que no se puede hacer foreach sobre un objeto ni sobre un false
+            $list = $array; 
+
+        } else if ($list == false) {
+            $list = [];
+        }
+
+        return $list;
+    }
+
+
+    public function getSchedules_for_theather($id_theather)
+    {
+
+        $list = $this->dao->read($id_theather);
+
+
+        if (!is_array($list) && $list != false) { 
+            $array[] = $list;
+            $list = $array; 
+
+        } else if ($list == false) {
+            $list = [];
+        }
+
+        return $list;
+    }
+
+    public function getmovie_schedules($id_movie)
+    {
+
+        $list = $this->dao->readSessionForMovie($id_movie);
+
+
+        if (!is_array($list) && $list != false) { 
+            $array[] = $list;
+            $list = $array; 
 
         } else if ($list == false) {
             $list = [];
@@ -130,9 +165,9 @@ class SessionController
         $list = $this->dao->readForMovie($id_movie);
 
 
-        if (!is_array($list) && $list != false) { // si no hay nada cargado, readall devuelve false
+        if (!is_array($list) && $list != false) { 
             $array[] = $list;
-            $list = $array; // para que devuelva un arreglo en caso de haber solo 1 objeto // esto para cuando queremos hacer foreach al listar, ya que no se puede hacer foreach sobre un objeto ni sobre un false
+            $list = $array; 
 
         } else if ($list == false) {
             $list = [];
@@ -141,6 +176,4 @@ class SessionController
         return $list;
     }
 
-    public function delete($id)
-    { }
 }

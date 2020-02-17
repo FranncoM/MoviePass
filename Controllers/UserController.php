@@ -22,6 +22,34 @@ class UserController
         *
         */
 
+        public function createByAdmin ($name, $lastname, $username, $email, $password, $level)
+        {
+    
+            if ($level == 0) {
+                //crea el objeto user para luego agregarlo a la base de datos
+    
+                $user = new User(0, $name, $lastname, $username, $email, $password, $level);
+    
+                //llama al metodo del dao para guardarlo en la base de datos
+    
+                $this->dao->create($user);
+    
+                //una vez guardado en la BD se muestra el home para administradores.
+                $this->viewController->listUsers();
+            } else {
+                //crea el objeto user para luego agregarlo a la base de datos
+    
+                $user = new User(0, $name, $lastname, $username, $email, $password, $level);
+    
+                //llama al metodo del dao para guardarlo en la base de datos
+    
+                $this->dao->create($user);
+    
+                //luego de guardarlo en la base de datos se muetra el inicio de la pagina
+                $this->viewController->login();
+            }
+        }
+
     public function create($name, $lastname, $username, $email, $password, $level = 1)
     {
 
@@ -50,8 +78,7 @@ class UserController
         }
     }
 
-
-
+    
     public function readAll()
     {
         //guarda todos los user de la base de datos en la variable list
@@ -69,7 +96,6 @@ class UserController
 
     public function read($email)
     {
-        //DEVUELVE EL user CON ESE EMAIL EN CASO DE EXSISTIR
 
 
         $user = $this->dao->read($email);
@@ -80,10 +106,7 @@ class UserController
 
         $user = $this->dao->read($email);
 
-
-
-        if ($_SESSION['user']->getLevel() == 0 && $user->getId() != 1) {      // Solo borra si el usuario en sesion es admin(El user con id=1 no se pude eliminar)
-
+        if ($_SESSION['user']->getLevel() == 0 && $user->getId() != 1) {     
             $this->dao->delete($email);
 
             $this->viewController->listUsers();
@@ -114,18 +137,21 @@ class UserController
         }
     }
 
-    public function checkSession()
-    {
-        if (session_status() == PHP_SESSION_NONE)
+    public function checkSession(){
+
+        if (session_status() == PHP_SESSION_NONE){
             session_start();
+        }
 
         if (isset($_SESSION['user'])) {
 
             $user = $this->dao->read($_SESSION['user']->getEmail());
 
-            if ($user->getPassword() == $_SESSION['user']->getPassword())
+            if ($user->getPassword() == $_SESSION['user']->getPassword()){
                 return $user;
-        } else {
+            }
+            
+        }else {
             return false;
         }
     }

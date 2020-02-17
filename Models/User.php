@@ -7,7 +7,6 @@ class User
     private $id_user;
     private $name;
     private $lastName;
-    private $userName;
     private $email;
     private $password;
     private $level;
@@ -15,13 +14,12 @@ class User
     private $dateTickets;
 
 
-    public function __construct($id_user = "", $name = "", $lastName = "", $userName = "", $email = "", $password = "", $level = 1)
+    public function __construct($id_user = "", $name = "", $lastName = "", $email = "", $password = "", $level = 1)
     {
 
         $this->id_user = $id_user;
         $this->name = $name;
         $this->lastName = $lastName;
-        $this->userName = $userName;
         $this->email = $email;
         $this->password = $password;
         $this->level = $level;
@@ -44,11 +42,6 @@ class User
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-    }
-
-    public function setUserName($userName)
-    {
-        $this->userName = $userName;
     }
 
     public function setPassword($password)
@@ -81,11 +74,6 @@ class User
     public function getLastName()
     {
         return $this->lastName;
-    }
-
-    public function getUserName()
-    {
-        return $this->userName;
     }
 
     public function getPassword()

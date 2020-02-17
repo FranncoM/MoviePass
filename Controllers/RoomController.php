@@ -42,15 +42,13 @@ class RoomController
 
     public function readAll()
     {
-        //guarda todos los user de la base de datos en la variable list
 
         $list = $this->dao->readAll();
 
 
-        if (!is_array($list) && $list != false) { // si no hay nada cargado, readall devuelve false
+        if (!is_array($list) && $list != false) {
             $array[] = $list;
-            $list = $array; // para que devuelva un arreglo en caso de haber solo 1 objeto // esto para cuando queremos hacer foreach al listar, ya que no se puede hacer foreach sobre un objeto ni sobre un false
-
+            $list = $array;
         } else if ($list == false) {
             $list = [];
         }
@@ -74,10 +72,9 @@ class RoomController
         $list = $this->dao->readForTheather($id_theather);
 
 
-        if (!is_array($list) && $list != false) { // si no hay nada cargado, readall devuelve false
+        if (!is_array($list) && $list != false) {
             $array[] = $list;
-            $list = $array; // para que devuelva un arreglo en caso de haber solo 1 objeto // esto para cuando queremos hacer foreach al listar, ya que no se puede hacer foreach sobre un objeto ni sobre un false
-
+            $list = $array;
         } else if ($list == false) {
             $list = [];
         }

@@ -11,10 +11,10 @@ if ($user) {
 <!-- Page top section -->
 <section class="page-top-section set-bg" data-setbg="img/page-top-bg/1.jpg" style="background: #330d38;">
   <div class="page-info">
-    <h2>Lista de Sesiones</h2>
+    <h2>Horarios</h2>
     <div class="site-breadcrumb">
-      <a href="#">Compras</a> /
-      <span>Sesiones </span>
+      <a href="#">Cartelera</a> /
+      <span>Horarios </span>
     </div>
   </div>
 </section>
@@ -27,28 +27,19 @@ if ($user) {
     <div class="content" style="background: #ffffff;">
 
       <!--Info movie -->
-      <table style="text-align:center;" class="table table-responsive table-bordered">
-        <thead class="table-active">
-          <tr>
-            <th style="width: 5%;">Titulo</th>
-            <th style="width: 5%;">Categoria</th>
-            <th style="width: 5%;">Restriccion de edad</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php if (!empty($movie)) {
+      <?php if (!empty($movie)) { ?>
+        <div class="movie">
+          <img class="poster" src="<?php echo $movie->getPoster() ?>"></img>
 
-            ?>
-            <tr>
-              <td><?php echo $movie->getTitle() ?></td>
-              <td><?php echo $movie->getCategory() ?></td>
-              <td><?php echo $movie->getAge() ?></td>
+          <div class="title"><?php echo $movie->getTitle() ?></div>
 
-            </tr>
-          <?php
-          }
-          ?>
-        </tbody>
+          <div class="detail"><?php echo $movie->getOverview() ?></div>
+        </div>
+
+      <?php
+      }
+      ?>
+
       </table>
       <!-- info end-->
 
@@ -58,26 +49,25 @@ if ($user) {
 
             <thead class="table-active">
               <tr>
-                <th style="width: 10%;">Cine</th>
-                <th style="width: 15%;">Pelicula</th>
-                <th style="width: 30%;">Fecha</th>
-                <th style="width: 15%;">Hora</th>
+                <th style="width: 10%;">Cines</th>
+                <th style="width: 30%;">Fechas</th>
+                <th style="width: 15%;">Horarios</th>
                 <th style="width: 20%;">Asientos Disponibles</th>
               </tr>
             </thead>
             <tbody>
+
               <?php
               if (!empty($S_list)) {
                 foreach ($S_list as $list) {
                   echo "<tr>
                         <th>" . $list->getTheather() . "</th>
-                        <td>" . $list->getMovie() . "</td>
                         <td>" . $list->getDate() . "</td>
                         <td>" . $list->getTime() . "</td>
                         <td>" . $list->getTickets() . "</td>";
 
-                  ?>
-                  <td><button type="submit" name="id_session" class="btn btn-primary" value="<?php echo $list->getId() ?>">Siguiente</button></td>
+              ?>
+                  <td><button type="submit" name="id_session" class="btn btn-primary" value="<?php echo $movie->getId() ?>">Comprar</button></td>
                   </tr>
               <?php
                 }

@@ -52,7 +52,9 @@ class DAOSession
      public function read($_id)
      {
 
-          $sql = "SELECT * FROM room_x_movie where id_rm = :id";
+          $sql = "SELECT rm.id_rm, t.name AS theather , r.name AS room, m.title AS film, rm.date, rm.time, r.tickets,m.id as id_movie
+          FROM room_x_movie rm INNER JOIN  rooms r ON rm.id_room = r.id_room INNER JOIN theathers t ON t.id_theather = r.id_theather 
+          INNER JOIN movies m ON rm.id_movie = m.id where rm.id_rm = :id;";
 
 
           $parameters['id'] = $_id;
@@ -159,7 +161,7 @@ class DAOSession
      {
           $sql = "SELECT rm.id_rm, t.name AS theather , r.name AS room, m.title AS film, rm.date, rm.time,m.id as id_movie, r.tickets
                FROM room_x_movie rm INNER JOIN  rooms r ON rm.id_room = r.id_room INNER JOIN theathers t ON t.id_theather = r.id_theather INNER JOIN movies m ON rm.id_movie = m.id
-                where t.id_theather = :theather order by rm.date, rm.time;";
+                where t.id_theather = :theather;";
 
           $parameters['theather'] = $theather;
 
@@ -182,7 +184,7 @@ class DAOSession
      {
           $sql = "SELECT rm.id_rm, t.name AS theather , r.name AS room, m.title AS film, rm.date, rm.time,m.id as id_movie, r.tickets
                FROM room_x_movie rm INNER JOIN  rooms r ON rm.id_room = r.id_room INNER JOIN theathers t ON t.id_theather = r.id_theather INNER JOIN movies m ON rm.id_movie = m.id
-                where t.id_theather = :theather order by rm.date, rm.time ;";
+                where t.id_theather = :theather;";
 
           $parameters['theather'] = $theather;
 
@@ -201,7 +203,6 @@ class DAOSession
                return false;
      }
 
-
      public function readForMovie($id_movie)
      {
           $sql = "SELECT rm.id_rm, t.name AS theather , r.name AS room, m.title AS film, rm.date, rm.time, m.id AS id_movie, r.tickets
@@ -214,6 +215,7 @@ class DAOSession
                $this->connection = Connection::getInstance();
 
                $resultSet = $this->connection->execute($sql, $parameters);
+
           } catch (Exception $ex) {
 
                throw $ex;
@@ -254,7 +256,7 @@ class DAOSession
      public function edit($_movie)
      { //modificar//////////////////////////////////////////
 
-          $sql = "UPDATE movies SET title = :title, category = :category, age = :age, id_tmbd = :id_tmbd";
+          $sql = "UPDATE room_x_movie SET title = :title, category = :category, age = :age, id_tmbd = :id_tmbd";
 
           $parameters['title'] = $_movie->getTitle();
           $parameters['category'] = $_movie->getCategory();
@@ -288,10 +290,7 @@ class DAOSession
           }
      }
 
-     /**
-      * Transforma el listado de peliculas en
-      * objetos de la clase Movie
-      */
+    
      protected function mapear($value)
      {
 

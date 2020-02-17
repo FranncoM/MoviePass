@@ -6,20 +6,24 @@ class Movie
 {
 
     private $id;
+    private $id_tmdb;
     private $title;
-    private $category;
+    private $genre;
     private $age;
-    private $id_tmbd;
+    private $overview;
+    private $poster;
 
 
-    public function __construct($id = '', $title = '', $category = '', $age = '', $id_tmbd = "")
+    public function __construct($id = '', $id_tmdb = '', $title = '', $genre = '', $age = '', $overview = '', $poster = '')
     {
 
         $this->id = $id;
+        $this->id_tmdb = $id_tmdb;
         $this->title = $title;
-        $this->category = $category;
+        $this->genre = $genre;
         $this->age = $age;
-        $this->id_tmbd = $id_tmbd;
+        $this->overview = $overview;
+        $this->poster = $poster;
     }
 
 
@@ -30,29 +34,37 @@ class Movie
     {
         $this->id = $id;
     }
+
+    public function setId_tmdb($id_tmdb)
+    {
+        $this->id_tmdb = $id_tmdb;
+    }
+
     public function setTitle($title)
     {
-
         $this->title = $title;
     }
 
-    public function setCategory($category)
+    public function setGenre($genre)
     {
-
-        $this->category = $category;
+        $this->genre = $genre;
     }
 
     public function setAge($age)
     {
-
         $this->age = $age;
     }
 
-    public function setId_tmbd($id_tmbd)
+    public function setOverview($overview)
     {
-
-        $this->id_tmbd = $id_tmbd;
+        $this->overview = $overview;
     }
+
+    public function setPoster($poster)
+    {
+        $this->poster = $poster;
+    }
+
 
     ////////////** GETTERS *//////////////////
 
@@ -60,16 +72,21 @@ class Movie
     {
         return $this->id;
     }
+
+    public function getId_tmdb()
+    {
+        return $this->id_tmdb;
+    }
+
     public function getTitle()
     {
-
         return $this->title;
     }
 
-    public function getCategory()
+    public function getGenre()
     {
 
-        return $this->category;
+        return $this->genre;
     }
 
     public function getAge()
@@ -78,9 +95,13 @@ class Movie
         return $this->age;
     }
 
-    public function getId_tmbd()
+    public function getOverview()
     {
+        return $this->overview;
+    }
 
-        return  $this->id_tmbd;
+    public function getPoster()
+    {
+        return $this->poster;
     }
 }

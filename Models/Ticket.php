@@ -6,24 +6,28 @@ namespace Models;
 class Ticket
 {
     private $id_ticket;
-    private $sala;
-    private  $code;
-    private $name_movie;
+    private $id_user;
+    private $movie;
+    private $room;
     private $date;
-    private $name_theather;
-    private $adress;
+    private $time;
     private $price;
+    private $theather;
+    private $adress;
+    private $id_rm;
 
-    public function __construct($id_ticket = '', $sala = '', $code = '', $name_movie = '', $date = '', $name_theather = '', $adress = '', $price = '')
+    public function __construct($id_user = '', $movie = '', $room = '', $date = '', $time = '', $price = '', $theather = '', $adress = '', $id_rm = '', $id_ticket = '')
     {
         $this->id_ticket = $id_ticket;
-        $this->sala = $sala;
-        $this->code = $code;
-        $this->name_movie = $name_movie;
+        $this->id_user = $id_user;
+        $this->movie = $movie;
+        $this->room = $room;
         $this->date = $date;
-        $this->name_theather = $name_theather;
-        $this->adress = $adress;
+        $this->time = $time;
         $this->price = $price;
+        $this->theather = $theather;
+        $this->adress = $adress;
+        $this->id_rm = $id_rm;
     }
 
 
@@ -35,24 +39,23 @@ class Ticket
         $this->id_ticket = $id_ticket;
     }
 
-    public function setSala($sala)
+    public function setId_user($id_user)
     {
 
-        $this->sala = $sala;
+        $this->id_user = $id_user;
     }
 
-    public function setCode($code)
+    public function setMovie($movie)
     {
 
-        $this->code = $code;
+        $this->movie = $movie;
     }
 
-    public function setName_movie($name_movie)
+    public function setRoom($room)
     {
 
-        $this->name_movie = $name_movie;
+        $this->room = $room;
     }
-
 
     public function setDate($date)
     {
@@ -60,16 +63,9 @@ class Ticket
         $this->date = $date;
     }
 
-    public function setName_theather($name_theather)
+    public function setTime($time)
     {
-
-        $this->name_theather = $name_theather;
-    }
-
-    public function setAdress($adress)
-    {
-
-        $this->adress = $adress;
+        $this->time = $time;
     }
 
     public function setPrice($price)
@@ -78,8 +74,23 @@ class Ticket
         $this->price = $price;
     }
 
+    public function setTheather($theather)
+    {
 
+        $this->theather = $theather;
+    }
 
+    public function setAdress($adress)
+    {
+
+        $this->adress = $adress;
+    }
+
+    public function setId_rm($id_rm)
+    {
+
+        $this->id_rm = $id_rm;
+    }
     ////////////** GETTERS *//////////////////
 
     public function getId_ticket()
@@ -88,24 +99,23 @@ class Ticket
         return $this->id_ticket;
     }
 
-    public function getSala()
+    public function getId_user()
     {
 
-        return $this->sala;
+        return $this->id_user;
     }
 
-    public function getCode()
+    public function getMovie()
     {
 
-        return $this->code;
+        return $this->movie;
     }
 
-    public function getName_movie()
+    public function getRoom()
     {
 
-        return $this->name_movie;
+        return $this->room;
     }
-
 
     public function getDate()
     {
@@ -113,10 +123,20 @@ class Ticket
         return $this->date;
     }
 
-    public function getName_theather()
+    public function getTime()
+    {
+        return $this->time;
+    }
+
+    public function getPrice()
     {
 
-        return $this->name_theather;
+        return $this->price;
+    }
+    public function getTheather()
+    {
+
+        return $this->theather;
     }
 
     public function getAdress()
@@ -125,9 +145,9 @@ class Ticket
         return $this->adress;
     }
 
-    public function getPrice()
+    public function getId_rm()
     {
 
-        return $this->price;
+        return $this->id_rm;
     }
 }

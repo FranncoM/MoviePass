@@ -11,11 +11,8 @@
 		</a>
 		<ul class="main-menu footer-menu">
 			<li><a href="<?php echo FRONT_ROOT . "View/home" ?>">Inicio</a></li>
-			<li><a href="">Cartelera</a></li>
-			<li><a href="">Proximos Estrenos</a></li>
-			<li><a href="">Horarios</a></li>
-			<li><a href="">Compras</a></li>
-			<li><a href="">Contact</a></li>
+			<li><a href="<?php echo FRONT_ROOT . "View/viewCartelera" ?>">Cartelera</a></li>
+			<li><a href="">Contacto</a></li>
 		</ul>
 		<div class="footer-social d-flex justify-content-center">
 			<a href="#"><i class="fa fa-pinterest"></i></a>
@@ -24,7 +21,6 @@
 			<a href="#"><i class="fa fa-dribbble"></i></a>
 			<a href="#"><i class="fa fa-behance"></i></a>
 		</div>
-		<div class="copyright"><a href="">Colorlib</a> 2018 @ All rights reserved</div>
 	</div>
 </footer>
 <!-- Footer section end -->
@@ -38,8 +34,7 @@
 <script src="<?php echo SCRIPT_PATH . "jquery.sticky-sidebar.min.js" ?>"></script>
 <script src="<?php echo SCRIPT_PATH . "jquery.magnific-popup.min.js" ?>"></script>
 <script src="<?php echo SCRIPT_PATH . "main.js" ?>"></script>
-
-
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 </body>
 

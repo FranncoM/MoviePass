@@ -1,11 +1,5 @@
 <?php
-if ($user) {
-  if ($user->getLevel() == 0) {
-    include("nav-bar-admin.php");
-  } else include("nav-bar-user.php");
-} else
-  include('nav-bar.php');
-?>
+include("nav-bar-admin.php"); ?>
 
 <!-- Page top section -->
 
@@ -32,14 +26,15 @@ if ($user) {
 
         <form action="<?php echo FRONT_ROOT . "view/viewList_sessions" ?>" method="GET">
           <div class="form-group">
-            <select name="id_theather" class="custom-select" required>
+            <select style="width: 350px" name="id_theather" class="custom-select" required>
               <option value=''>Seleccione un cine</option>
               <?php foreach ($T_list as $key => $theather) { ?>
                 <option value="<?php echo $theather->getId();  ?>"><?php echo $theather->getName() ?></option>
               <?php } ?>
             </select>
+            <button type="submit" class="btn btn-primary">Buscar</button>
           </div>
-          <button type="submit" class="btn btn-primary">Buscar</button>
+
         </form>
 
       </div>

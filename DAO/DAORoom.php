@@ -177,10 +177,7 @@ class DAORoom
         }
     }
 
-    /**
-     * Transforooma el listado de peliculas en
-     * objetos de la clase Movie
-     */
+    
     protected function mapear($value)
     {
 
