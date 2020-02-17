@@ -1,28 +1,25 @@
 drop database moviepass;
-create database MoviePass;
-use MoviePass;
-
-
+create database moviepass;
+use moviepass;
 
 /**********************Tabla de usuarios************************/
 create table users ( id int auto_increment primary key, level int not null, name varchar(50) not null, lastname varchar(50) not null,
-					 username varchar(50) not null, password varchar(60) not null, email varchar(80) not null UNIQUE);
+					  password varchar(60) not null, email varchar(80) not null UNIQUE);
 
 /****Volcado de usuarios***/
-insert into users (level,name, lastname, username, password, email) values (0, "nombre", "apellido", "admin", "admin", "admin");
-insert into users (level,name, lastname, username, password, email) values (1, "nombre2", "apellido2", "admin2", "user", "user");
+insert into users (level,name, lastname,  password, email) values (0, "nombre", "apellido", "admin", "admin@admin");
+insert into users (level,name, lastname,  password, email) values (1, "nombre2", "apellido2", "user", "user@user");
 
 
 /************************Tabla de Peliculas*****************************/
-create table movies ( id int auto_increment primary key, title varchar(80) not null,
-						age varchar(10) not null, category varchar(40) not null,img varchar(80) not null);
+CREATE TABLE movies(id int auto_increment primary key,id_tmdb int (100) not null, title varchar(80)not null,age varchar(10) not null,genre varchar(40) not null,overview text ,poster varchar(100) not null);
 
 /*Volcado de peliculas*/
-insert into movies (title, age, category, img) values ("Joker", "18", "Accion","Views/layout/img/joker.jpg");
-insert into movies (title, age, category, img) values ("Geminis", "16", "Accion","Views/layout/img/geminis.jpg");
-insert into movies (title, age, category, img) values ("Mujer Maravilla", "APT", "Accion",'Views/layout/img/MujerMaravilla.jpg');
-insert into movies (title, age, category, img) values ("Toy Story 4", "APT", "Infantil",'Views/layout/img/ToyStory4.jpg');
-insert into movies (title, age, category, img) values ("Avengers EndGame", "13", "Accion",'Views/layout/img/avengersEndGame.jpg');
+INSERT INTO movies (id_tmdb,title,age,genre,overview,poster) VALUES(475557,"Joker", "18", "Accion","Arthur Fleck es un hombre ignorado por la sociedad, cuya motivación en la vida es hacer reír. Pero una serie de trágicos acontecimientos le llevarán a ver el mundo de otra forma. Película basada en Joker, el popular personaje de DC Comics y archivillano de Batman, pero que en este film toma un cariz más realista y oscuro. ","https://image.tmdb.org/t/p/original/v0eQLbzT6sWelfApuYsEkYpzufl.jpg");
+INSERT INTO movies (id_tmdb,title,age,genre,overview,poster) VALUES(453405,"Géminis", "18", "Accion","Henry Bogan, un asesino a sueldo, pretende retirarse porque se siente viejo. Sin embargo, hay alguien que no está dispuesto a permitírselo porque tiene la misión de matarlo: un clon suyo más joven, más rápido y más fuerte. ","https://image.tmdb.org/t/p/original/gJpbw3pVCAKksp1LgsTGW7c8SFV.jpg");
+INSERT INTO movies (id_tmdb,title,age,genre,overview,poster) VALUES(301528,"Toy Story 4 ", "ATP", "Fantasia","Woody siempre ha tenido claro cuál es su labor en el mundo y cuál es su prioridad: cuidar a su dueño, ya sea Andy o Bonnie. Sin embargo, Woody descubrirá lo grande que puede ser el mundo para un juguete cuando Forky se convierta en su nuevo compañero de habitación. Los juguetes se embarcarán en una aventura de la que no se olvidarán jamás. ","https://image.tmdb.org/t/p/original/yF1vPDuHVrAUMX5dy1tVMbAjkEL.jpg ");
+INSERT INTO movies (id_tmdb,title,age,genre,overview,poster) VALUES(290859,"Terminator: Destino oscuro", "18", "Accion","Sarah Connor une todas sus fuerzas con una mujer cyborg para proteger a una joven de un extremadamente poderoso y nuevo Terminator. ","https://image.tmdb.org/t/p/original/k7PuHoj2oE7nEHExwliF2FSXFnr.jpg");
+INSERT INTO movies (id_tmdb,title,age,genre,overview,poster) VALUES(299537,"Capitana Marvel", "16", "Accion","La historia sigue a Carol Danvers mientras se convierte en uno de los héroes más poderosos del universo, cuando la Tierra se encuentra atrapada en medio de una guerra galáctica entre dos razas alienígenas. Situada en los años 90, 'Capitana Marvel' es una historia nueva de un período de tiempo nunca antes visto en la historia del Universo Cinematográfico de Marvel. ","https://image.tmdb.org/t/p/original/d3p5JuwN7dG0TvrN5h4ZY4tMOEX.jpg");
 
 
 
@@ -122,4 +119,14 @@ create table purchases (id_purchase int auto_increment primary key,id_user int n
 create table tickets (id_ticket int auto_increment primary key, id_rm int not null, id_user int not null,movie varchar(50) not null,date date not null,time time not null,
 price float not null,theather varchar(50)not null);
 
+SELECT * from movies;
+SELECT rm.id_rm, t.name AS theather , r.name AS room, m.title AS film, rm.date, rm.time, m.id as id_movie, r.tickets
+          FROM room_x_movie rm INNER JOIN  rooms r ON rm.id_room = r.id_room INNER JOIN theathers t ON t.id_theather = r.id_theather INNER JOIN movies m ON rm.id_movie = m.id
+           where rm.date ='2019-12-13' group by m.title;
 
+SELECT * FROM room_x_movie rm INNER JOIN  rooms r ON rm.id_room = r.id_room INNER JOIN theathers t ON t.id_theather = r.id_theather INNER JOIN movies m ON rm.id_movie = m.id
+           where rm.date ='2019-12-13' group by m.title;
+
+SELECT m.title AS title, m.age AS age, m.genre AS genre, m.overview AS overview, m.poster AS poster
+          FROM room_x_movie rm INNER JOIN  rooms r ON rm.id_room = r.id_room INNER JOIN theathers t ON t.id_theather = r.id_theather INNER JOIN movies m ON rm.id_movie = m.id
+           where rm.date ='2019-12-12' group by m.title;

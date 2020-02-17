@@ -10,7 +10,7 @@ define("IMG_PATH", FRONT_ROOT.VIEWS_PATH . "layout/img/");
 
 /**BD */
 define ("DB_HOST", "localhost");
-define ("DB_NAME", "MoviePass2");
+define ("DB_NAME", "moviepass");
 define ("DB_PASS", "root");
 define ("DB_USER", "root");
 
